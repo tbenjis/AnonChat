@@ -1,0 +1,22 @@
+AnonChat based on jTorChat
+	
+	Application modified for extra security and the addition of OTR messaging
+	Updated to latest Tor binary and other security improvement.
+	Please contribute if interested.
+	
+Features from python Torchat
+
+    Basic Messaging to Torchat users
+    Popup Alerts
+    Time Stamp
+    file transfer
+    Minimize to tray (not under Gnome3 because java)
+
+Features extended beyond python Torchat
+
+    Auto buddy request - Helps newcomers find people to talk to
+    Interface to existing installed tor via GUI 
+    BuddySync - allows a group to always keep their buddies in sync over tor.
+    FileSharing - allows for calling and downloading files off online buddies. 
+    PageSystem - allows to set automatic answers for specified commands.
+
