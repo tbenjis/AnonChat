@@ -76,9 +76,6 @@ public class TorLoader {
 										Logger.log(Logger.INFO, "Tor", l);
 
 										
-
-
-
 										// New progress function (obfsproxy has more then three progress messages)
 										if (l.contains("Bootstrapped ")) {
 											String[] starting = l.split("%");
