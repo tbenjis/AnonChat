@@ -4,6 +4,8 @@
 # generated files
 bin/
 gen/
+data/offlinemsgs/
+data/Tor/tor_data/
 
 # Intellij project files
 *.iml

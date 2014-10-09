@@ -11,10 +11,10 @@ import util.Util;
 public class Config {
 
 	// What Client and Version
-	public static final String CLIENT = "JTC [T2]";
-	public static final String VERSIONA = "0";
-	public static final String VERSIONB = "7";
-	public static final String VERSIONC = "12";
+	public static final String CLIENT = "AnonChat";
+	public static final String VERSIONA = "1";
+	public static final String VERSIONB = "0";
+	public static final String VERSIONC = "0";
 	public static String comment = "";
 	
 	// Test for connections
