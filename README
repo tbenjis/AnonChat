@@ -1,6 +1,4 @@
-AnonChat is a p2p messaging application based on jTorChat with OTR 
-	
-	Application modified for extra security and the addition of OTR messaging protocol and SMP (Socialist Millionaire Protocol) Updated to latest Tor binary and other security improvement.
+AnonChat is a p2p messaging application based on jTorChat. Application has been modified for extra security and the addition of OTR messaging protocol and SMP (Socialist Millionaire Protocol) Updated to latest Tor binary and other security improvement.
 
 	
 Design Goals
