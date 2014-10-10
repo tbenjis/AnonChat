@@ -80,11 +80,11 @@ public class Config {
 
 	
 	// Paths to all Imortant Files
-	public static String TorLin="linux/jtor.lin";
-	public static String TorLinobf="linux/jtorobf.lin";
+	public static String TorLin="linux/tor.lin";
+	public static String TorLinobf="linux/torobf.lin";
 	public static String TorLinlib="linux/";
-	public static String TorWin="windows/jtor.exe";
-	public static String TorWinobf="windows/jtorobf.exe";
+	public static String TorWin="windows/tor.exe";
+	public static String TorWinobf="windows/torobf.exe";
 	public static String Torbinary;
 	public static String controlfile = "controlfile";
 	
