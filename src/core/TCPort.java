@@ -134,12 +134,6 @@ public class TCPort {
 				public void run() {
 					while (true) {
 						try {
-
-							if (Config.nowstart != "")
-							{
-								BuddyList.loadBuddiesRemote(Config.nowstart);
-								Config.nowstart = "";
-							}
 							if (Config.nowstartupdate != "")
 							{
 								Config.LastCheck = Update.loadUpdate(Config.nowstartupdate);

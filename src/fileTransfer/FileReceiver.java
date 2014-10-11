@@ -72,14 +72,9 @@ public class FileReceiver implements IFileTransfer {
 		gui.setVisible(true);
 		this.gui.update(this.fileSize, 0);
 
-		if(Config.transferonstart == 1)
-		{
-			this.gui.startfirst();	
-		}
-		else
-		{
-Logger.log(Logger.WARNING, this.getClass(), "Wait for press Start.");
-		}
+		
+		Logger.log(Logger.WARNING, this.getClass(), "Wait for press Start.");
+		
 		}
 	}
 	

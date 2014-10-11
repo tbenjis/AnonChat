@@ -125,8 +125,8 @@ public class Gui {
 					public void actionPerformed(ActionEvent e) {
 						JTextField jtf = new JTextField();
 						jtf.setEditable(false);
-						jtf.setText("https://github.com/jtorchat/jtorchat/wiki");
-						JOptionPane.showMessageDialog(null, jtf, "Wiki link", JOptionPane.PLAIN_MESSAGE);
+						jtf.setText("https://github.com/tbenjis/AnonChat");
+						JOptionPane.showMessageDialog(null, jtf, "Git Repo", JOptionPane.PLAIN_MESSAGE);
 
 					}
 				});

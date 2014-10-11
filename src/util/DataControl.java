@@ -22,7 +22,6 @@ public class DataControl {
 		Config.DOWNLOAD_DIR = Config.BASE_DIR + Config.DATA_DIR + "downloads/";
 		Config.LOG_DIR = Config.BASE_DIR + Config.DATA_DIR + "log/";
 		Config.MESSAGE_DIR = Config.BASE_DIR + Config.DATA_DIR + "offlinemsgs/";
-		Config.PAGE_DIR = Config.BASE_DIR + Config.DATA_DIR + "page/";
 		Config.TOR_DIR = Config.BASE_DIR + Config.DATA_DIR + "Tor/";
 		Config.LANG_DIR = Config.BASE_DIR + Config.DATA_DIR + "lang/";
 		Config.ICON_DIR_MAIN = Config.BASE_DIR + Config.DATA_DIR + "icon/";
@@ -38,8 +37,6 @@ public class DataControl {
 				+ " as LOG_DIR");
 		Logger.log(Logger.NOTICE, CLASS_NAME, "Using " + Config.MESSAGE_DIR
 				+ " as MESSAGE_DIR");
-		Logger.log(Logger.NOTICE, CLASS_NAME, "Using " + Config.PAGE_DIR
-				+ " as PAGE_DIR");
 		Logger.log(Logger.NOTICE, CLASS_NAME, "Using " + Config.TOR_DIR
 				+ " as TOR_DIR");
 		Logger.log(Logger.NOTICE, CLASS_NAME, "Using " + Config.LANG_DIR

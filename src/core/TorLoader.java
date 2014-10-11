@@ -52,7 +52,7 @@ public class TorLoader {
 						{
 							Logger.log(Logger.FATAL, "TCServ", "Failed to test local server.");
 							tl.getProgressBar1().setValue(0);
-							tl.gettextArea1().setText("Can not bind a port for jtorchat, is another jtorchat instance activ?");
+							tl.gettextArea1().setText("Can not bind a port for Anonchat, is another Anonchat instance active?");
 							tl.getProgressBar1().setIndeterminate(false);
 						}
 						else

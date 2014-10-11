@@ -48,13 +48,13 @@ public static int newpb = 0;
 		String command2 = null;
 		String command3 = null;
 		if (Config.os.indexOf("win") >= 0) {
-			command1="taskkill /F /IM jtor.exe";
-			command2="taskkill /F /IM jtorobf.exe";
-			command3="taskkill /F /IM jobfsproxy.exe";
+			command1="taskkill /F /IM tor.exe";
+			command2="taskkill /F /IM torobf.exe";
+			command3="taskkill /F /IM obfsproxy.exe";
 		} else if (Config.os.indexOf("nix") >= 0 || Config.os.indexOf("nux") >= 0) {
-			command1="killall jtor.lin";
-			command2="killall jtorobf.lin";
-			command3="killall jobfsproxy";
+			command1="killall tor.lin";
+			command2="killall torobf.lin";
+			command3="killall obfsproxy";
 		}
 		
 		Runtime run = Runtime.getRuntime();
@@ -114,13 +114,13 @@ public static int newpb = 0;
 			label2.setText("That means another Instance of Tor is already running.");
 
 			//---- label3 ----
-			label3.setText("Normally it is an old tior instance from jtorchat.");
+			label3.setText("Normally it is an old tor instance from AnonChat.");
 
 			//---- label4 ----
-			label4.setText("Can i try to kill them and start a new one?");
+			label4.setText("Can I try to kill them and start a new one?");
 
 			//---- button1 ----
-			button1.setText("Yes (kill jtor.exe or tor.lin)");
+			button1.setText("Yes (kill tor.exe or tor.lin)");
 			button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

@@ -33,8 +33,7 @@ public class Config {
 	public static String CONFIG_DIR = "";
 	public static String DOWNLOAD_DIR = "";
 	public static String LOG_DIR = "";
-	public static String MESSAGE_DIR = ""; 
-	public static String PAGE_DIR = ""; 
+	public static String MESSAGE_DIR = "";  
 	public static String TOR_DIR = "";
 	public static String LANG_DIR = "";
 	public static String DATA_DIR = "";
@@ -53,12 +52,9 @@ public class Config {
 	
 	public static int visiblelog;
 	public static int fulllog;
-	public static int buddyStart;
 	public static int updateStart;
 	public static int updateStatus = 0;
 	public static int firststart;
-	public static int pageactive;
-	public static int transferonstart;
 	public static int allcheckupdate;
 	public static int obfsproxy;
 	public static int ClickableLinks;
@@ -67,10 +63,8 @@ public class Config {
 	public static int icon_size;
 	public static int icon_space;
 	public static String icon_folder;
-	public static String sync; 
 	public static String update; 
 	public static String us;
-	public static String nowstart = "";
 	public static String nowstartupdate = "";
 	public static String LastCheck;
 	public static String lang;
@@ -109,7 +103,6 @@ public class Config {
 		Config.ICON_DIR = Config.ICON_DIR_MAIN + icon_folder;
 		if(!new File(ICON_DIR).exists()){Config.ICON_DIR = Config.ICON_DIR_MAIN + "juan.icon";}
 		Logger.log(Logger.NOTICE, "Config", "Using " + ICON_DIR + " as ICON_DIR");
-		if (Config.buddyStart == 1 & Config.offlineMod == 0){nowstart=sync;}
 		if (Config.updateStart == 1 & Config.offlineMod == 0){nowstartupdate=update;}
 
 		// Choose the right binary for every system

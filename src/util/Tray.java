@@ -62,7 +62,7 @@ public class Tray {
 		    MenuItem exitItem = new MenuItem(language.langtext[5]);
 		    exitItem.addActionListener(exitListener);
 		    popup.add(exitItem);
-		    trayIcon = new TrayIcon(image, "JTorchat - " + Config.us, popup);
+		    trayIcon = new TrayIcon(image, "AnonChat - " + Config.us, popup);
 		    trayIcon.addActionListener(togListener);
 		    try {
 		        tray.add(trayIcon);
