@@ -21,7 +21,7 @@ public class Config {
 	public static final int DEAD_CONNECTION_TIMEOUT = 240;
 	public static final int KEEPALIVE_INTERVAL = (int) (Math.random()*120); //120;
 	public static final int MAX_UNANSWERED_PINGS = 4;
-	public static final int CONNECT_TIMEOUT = 70;
+	public static final int CONNECT_TIMEOUT = 100;
 
 	// Compile with 
 	public static final String BUILD = VERSIONA+ "."+ VERSIONB + "." + VERSIONC;

