@@ -115,8 +115,10 @@ public class Gui {
         Tray.init();
 
 		JMenuBar jmb = new JMenuBar();
-		JMenu jmStatus = new JMenu(language.langtext[1]);
+		JMenuItem jmStatus = new JMenu(language.langtext[1]);
 		JMenu jmHelp = new JMenu(language.langtext[2]);
+		JMenu jmSettings = new JMenu("Settings");
+		
 		final JMenuItem jmiHelpLink = new JMenuItem(language.langtext[11]);
 		final JMenuItem jmiVersionName = new JMenuItem("Version");
 		jmiHelpLink.addActionListener(new ActionListener() { // note - the link is copiable so as to not open the link in the users normal browser automatically which could tip off anyone sniffing the network that they are using jtorcat
@@ -132,7 +134,7 @@ public class Gui {
 				});
 		jmHelp.add(jmiHelpLink);
 		
-		
+		//log menu
 		JMenuItem jmiLog = new JMenuItem(language.langtext[12]);
 		jmiLog.addActionListener(new ActionListener() {
 
@@ -141,7 +143,6 @@ public class Gui {
 				GuiLog.instance.setVisible(!GuiLog.instance.isVisible());
 			}
 		});
-		jmHelp.add(jmiLog);
 
 		
 		
@@ -151,7 +152,7 @@ public class Gui {
 				JTextField jtf = new JTextField();
 				jtf.setEditable(false);
 				jtf.setText(Config.CLIENT+" "+Config.VERSION);
-				JOptionPane.showMessageDialog(null, jtf, "Version", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, jtf, "App Version", JOptionPane.PLAIN_MESSAGE);
 
 			}
 		});
@@ -258,13 +259,16 @@ public class Gui {
 
 		//jmFile.add(jmiPingAttack);
 		jmFile.add(jmiAddContact);
-		jmFile.add(jmiSettings);
-		jmFile.add(jmiGUISettings);
 		jmFile.add(jmiProfileSettings);
+		jmFile.add(jmStatus);
 		jmFile.add(new JSeparator());
 		jmFile.add(jmiExit);
+		jmSettings.add(jmiSettings);
+		jmSettings.add(jmiGUISettings);
+		jmSettings.add(new JSeparator());
+		jmSettings.add(jmiLog);
 		jmb.add(jmFile);
-		jmb.add(jmStatus);
+		jmb.add(jmSettings);
 		jmb.add(jmHelp);
 		f.setJMenuBar(jmb);
 
