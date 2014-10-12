@@ -10,9 +10,6 @@ import java.util.Random;
 import java.util.Scanner;
 import util.ConfigWriter;
 
-
-
-
 public class BuddyList {
 	public static HashMap<String, Buddy> buds = new HashMap<String, Buddy>();
 	public static HashMap<String, Buddy> black = new HashMap<String, Buddy>();
