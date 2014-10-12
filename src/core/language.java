@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-
 import util.ConfigWriter;
 
 public class language {
@@ -73,7 +72,7 @@ public class language {
 			e.printStackTrace();
 			return null;
 		}
-
+		
 		return prop;
 	}
 
@@ -127,7 +126,7 @@ public class language {
 		info[0] = "The file has the language is " + info_lang;
 		info[1] = "In the language it means " + info_n_lang;
 		info[2] = "This language file have " + until + "/" + until_max
-				+ " Entrys.";
+				+ " Entries.";
 
 		return info;
 	}

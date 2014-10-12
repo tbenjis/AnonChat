@@ -440,7 +440,7 @@ public class GuiSettings extends JFrame {
 				textField5.setPreferredSize(new Dimension(180, 28));
 
 				//---- label6 ----
-				label6.setText("* Our ID: ");
+				label6.setText("* Your ID: ");
 				label6.setHorizontalAlignment(SwingConstants.RIGHT);
 
 				//---- textField6 ----
@@ -455,7 +455,7 @@ public class GuiSettings extends JFrame {
 				checkBox9.setText("obfsproxy (portable only)");
 
 				//---- label3 ----
-				label3.setText("Note: Our ID is your hostname without .onion");
+				label3.setText("Note: Your ID is your hostname without .onion");
 
 				//---- label7 ----
 				label7.setText("* Required");

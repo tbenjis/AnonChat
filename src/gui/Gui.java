@@ -37,6 +37,7 @@ import core.BuddyList;
 import core.Config;
 import core.Logger;
 import core.TCPort;
+import core.TorLoader;
 import core.language;
 import util.ChatWindow;
 import util.TCIconRenderer;
@@ -108,6 +109,7 @@ public class Gui {
 		APIManager.addEventListener(listener);
 		f = new JFrame(Config.us + " - Buddy List");
 		f.setLayout(new BorderLayout());
+		f.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
 		// Change HIDE_ON_CLOSE or EXIT_ON_CLOSE when it works
         Tray.init();
@@ -251,7 +253,14 @@ public class Gui {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {	
+				/**
+				 * We try to disconnect all our contacts
+				 * before exiting, this kills all process
+				 */
 				
+				BuddyList.disconnect_all(); //disconnect from all buddies to stop processes
+				TorLoader.cleanUp(); //clean up tor process
+				f.dispose();
 				System.exit(0);
 			}
 		});
