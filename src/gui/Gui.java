@@ -31,7 +31,6 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import commands.list_of_commands;
-
 import core.APIManager;
 import core.Buddy;
 import core.BuddyList;
@@ -39,7 +38,6 @@ import core.Config;
 import core.Logger;
 import core.TCPort;
 import core.language;
-
 import util.ChatWindow;
 import util.TCIconRenderer;
 import util.Tray;
@@ -252,7 +250,8 @@ public class Gui {
 		jmiExit.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
+				
 				System.exit(0);
 			}
 		});

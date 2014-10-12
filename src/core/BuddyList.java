@@ -49,7 +49,7 @@ public class BuddyList {
 	
 	public static void loadBuddies() throws FileNotFoundException {
 
-		Scanner s = new Scanner(new FileInputStream(Config.CONFIG_DIR + "bl.txt"));
+		Scanner s = new Scanner(new FileInputStream(Config.CONFIG_DIR + "contacts.txt"));
 		Random r = new Random();
 		while (s.hasNextLine()) {
 			String l = s.nextLine();
@@ -130,7 +130,7 @@ public class BuddyList {
 		}
 	
 	public static void saveBuddies() throws IOException {
-		FileOutputStream fos = new FileOutputStream(Config.CONFIG_DIR + "bl.txt");
+		FileOutputStream fos = new FileOutputStream(Config.CONFIG_DIR + "contacts.txt");
 		for (Buddy b : buds.values())
 		{
 		ConfigWriter.savebuddy(b);

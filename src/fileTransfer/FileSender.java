@@ -339,7 +339,7 @@ public class FileSender implements Runnable, IFileTransfer {
 
 		FileTransfer.getSenders().remove(buddy.getAddress() + " " + this.id);
 
-		// del this.buddy.bl.file_sender[this.buddy.address, this.id]
+		// del this.buddy.contacts.file_sender[this.buddy.address, this.id]
 	}
 	
 // Functions must not needed here but must set.

@@ -168,6 +168,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		mntmExit = new JMenuItem("Exit");
 		mnFile.add(mntmExit);
+		mntmExit.addActionListener(this);
 		
 		mnEncryptedChat = new JMenu("Encrypted Chat");
 		menuBar.add(mnEncryptedChat);
@@ -398,7 +399,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource() == this.mntmExit){
-			
+			dispose();
 		}
 		
 	}

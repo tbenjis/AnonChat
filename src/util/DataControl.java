@@ -25,7 +25,7 @@ public class DataControl {
 		Config.TOR_DIR = Config.BASE_DIR + Config.DATA_DIR + "Tor/";
 		Config.LANG_DIR = Config.BASE_DIR + Config.DATA_DIR + "lang/";
 		Config.ICON_DIR_MAIN = Config.BASE_DIR + Config.DATA_DIR + "icon/";
-		Config.BUDDY_DIR = Config.BASE_DIR + Config.DATA_DIR + "buddy/";
+		Config.BUDDY_DIR = Config.BASE_DIR + Config.DATA_DIR + "contacts/";
 
 		checkData();
 
