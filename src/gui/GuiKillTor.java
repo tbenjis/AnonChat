@@ -20,6 +20,7 @@ public static int newpb = 0;
 
 
 	public GuiKillTor() {
+		setTitle("Tor is in use");
 		initComponents();
 	}
 	

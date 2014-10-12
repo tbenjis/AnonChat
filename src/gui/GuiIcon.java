@@ -16,6 +16,7 @@ public class GuiIcon extends JFrame {
 //	private boolean hasBroadcast = false;
 	
 	public GuiIcon() {
+		setTitle("App Icon Settings");
 //		try {
 //			Class.forName("broadcast.Broadcast");
 //			hasBroadcast = true;

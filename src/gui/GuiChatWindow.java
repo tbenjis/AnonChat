@@ -40,7 +40,9 @@ import fileTransfer.FileDrop;
 import fileTransfer.FileSender;
 
 /**
- * @author Tsu
+ * The main chat window
+ * @author tbenjis
+ *
  */
 @SuppressWarnings("serial")
 public class GuiChatWindow extends JFrame {

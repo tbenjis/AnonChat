@@ -19,6 +19,7 @@ import util.ConfigWriter;
 public class GuiSettings extends JFrame {
 	
 	public GuiSettings() {
+		setTitle("Advanced Settings");
 
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

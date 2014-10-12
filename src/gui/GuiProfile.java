@@ -31,6 +31,7 @@ public class GuiProfile extends JFrame {
 Buddy b;
 	
 	public GuiProfile(Buddy b, boolean myself) {
+		setTitle("Profile");
 		
 		initComponents();
 		
@@ -130,7 +131,7 @@ Buddy b;
 			label4.setText("Disp-Name:");
 
 			//---- label5 ----
-			label5.setText("Tor-ID:");
+			label5.setText("AnonChat-ID:");
 
 			//---- label6 ----
 			label6.setText("Version:");

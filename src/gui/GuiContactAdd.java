@@ -22,6 +22,7 @@ public class GuiContactAdd extends JFrame {
 	// }
 
 	public GuiContactAdd() {
+		setTitle("Add a Contact");
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		initComponents();
@@ -35,7 +36,7 @@ public class GuiContactAdd extends JFrame {
 				return;
 			}
 			if (addr.equals(Config.us)) {
-				JOptionPane.showMessageDialog(null, "Error", "You can not add yourself", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Error", "You cannot add yourself", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			String dispName = textField2.getText();

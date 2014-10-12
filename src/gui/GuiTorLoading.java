@@ -72,7 +72,7 @@ public class GuiTorLoading extends JFrame {
 		{
 
 			//---- textArea1 ----
-			textArea1.setText("Everything works until now.");
+			textArea1.setText("Starting up.");
 			textArea1.setWrapStyleWord(true);
 			textArea1.setRows(2);
 			textArea1.setLineWrap(true);

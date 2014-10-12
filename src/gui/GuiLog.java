@@ -30,6 +30,7 @@ public class GuiLog extends JFrame {
 		initComponents();
 		setSize(755, 402);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Application Log");
 		textPane1.setEditable(false);
 		initDocument();
 	}
