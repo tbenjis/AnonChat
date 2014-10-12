@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -19,7 +21,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-import javax.swing.LayoutStyle;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
@@ -27,7 +28,6 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTML;
-
 import util.ChatWindow;
 import commands.list_of_commands;
 import core.Buddy;
@@ -40,6 +40,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
 
 /**
  * The main chat window
@@ -47,7 +50,7 @@ import javax.swing.JLabel;
  *
  */
 @SuppressWarnings("serial")
-public class GuiChatWindow extends JFrame {
+public class GuiChatWindow extends JFrame implements ActionListener {
 
 	public Buddy b;
 	private Style timestampStyle;
@@ -154,9 +157,13 @@ public class GuiChatWindow extends JFrame {
 		
 		mntmSaveChat = new JMenuItem("Save Chat");
 		mnFile.add(mntmSaveChat);
+		//menu for saving logs
+		mntmSaveChat.addActionListener(this);
 		
 		mntmHelp = new JMenuItem("Help");
 		mnFile.add(mntmHelp);
+		mntmHelp.addActionListener(this);
+		
 		mnFile.add(new JSeparator());
 		
 		mntmExit = new JMenuItem("Exit");
@@ -282,28 +289,39 @@ public class GuiChatWindow extends JFrame {
 			});
 			scrollPane4.setViewportView(textArea4);
 		}
+		
+		lblStatus = new JLabel("Status: ");
+		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		lblNotEncrypted = new JLabel("Not Encrypted");
+		lblStatus.setLabelFor(lblNotEncrypted);
+		lblNotEncrypted.setForeground(Color.RED);
 
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblStatus, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNotEncrypted, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(38, Short.MAX_VALUE))
+				.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+				.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(contentPaneLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNotEncrypted)
+						.addComponent(lblStatus))
+					.addContainerGap())
+		);
 		contentPane.setLayout(contentPaneLayout);
-		contentPaneLayout.setHorizontalGroup(contentPaneLayout
-				.createParallelGroup()
-				.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 303,
-						Short.MAX_VALUE)
-				.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 303,
-						Short.MAX_VALUE));
-		contentPaneLayout.setVerticalGroup(contentPaneLayout
-				.createParallelGroup().addGroup(
-						GroupLayout.Alignment.TRAILING,
-						contentPaneLayout
-								.createSequentialGroup()
-								.addComponent(scrollPane3,
-										GroupLayout.DEFAULT_SIZE, 294,
-										Short.MAX_VALUE)
-								.addPreferredGap(
-										LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(scrollPane4,
-										GroupLayout.PREFERRED_SIZE, 59,
-										GroupLayout.PREFERRED_SIZE)));
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization
@@ -344,6 +362,8 @@ public class GuiChatWindow extends JFrame {
 	private JMenuItem mntmStartEncryptedChat;
 	private JMenuItem mntmStopEncryptedChat;
 	private JMenuItem mntmAuthenticateContactmitm;
+	private JLabel lblStatus;
+	private JLabel lblNotEncrypted;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
@@ -364,5 +384,22 @@ public class GuiChatWindow extends JFrame {
 
 	public Buddy getBuddy() {
 		return b;
+	}
+
+	//action listener for the menus
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == this.mntmSaveChat){
+			list_of_commands.in_command(b, "/log", this);
+		}
+		
+		if(e.getSource() == this.mntmHelp){
+			list_of_commands.in_command(b, "/help", this);
+		}
+		
+		if(e.getSource() == this.mntmExit){
+			
+		}
+		
 	}
 }
