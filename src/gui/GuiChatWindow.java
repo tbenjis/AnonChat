@@ -16,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle;
@@ -28,16 +29,17 @@ import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTML;
 
 import util.ChatWindow;
-
 import commands.list_of_commands;
-
 import core.Buddy;
 import core.Config;
-
 import listeners.LinkController;
-
 import fileTransfer.FileDrop;
 import fileTransfer.FileSender;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JLabel;
 
 /**
  * The main chat window
@@ -143,6 +145,35 @@ public class GuiChatWindow extends JFrame {
 
 		textArea4.setWrapStyleWord(true);
 		textArea4.setLineWrap(true);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		mntmSaveChat = new JMenuItem("Save Chat");
+		mnFile.add(mntmSaveChat);
+		
+		mntmHelp = new JMenuItem("Help");
+		mnFile.add(mntmHelp);
+		mnFile.add(new JSeparator());
+		
+		mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		
+		mnEncryptedChat = new JMenu("Encrypted Chat");
+		menuBar.add(mnEncryptedChat);
+		
+		mntmStartEncryptedChat = new JMenuItem("Start Encrypted Chat");
+		mnEncryptedChat.add(mntmStartEncryptedChat);
+		
+		mntmStopEncryptedChat = new JMenuItem("Stop Encrypted Chat");
+		mnEncryptedChat.add(mntmStopEncryptedChat);
+		mnEncryptedChat.add(new JSeparator());
+		
+		mntmAuthenticateContactmitm = new JMenuItem("Authenticate Contact (MITM)");
+		mnEncryptedChat.add(mntmAuthenticateContactmitm);
 		addWindowFocusListener(new WindowAdapter() {
 
 			@Override
@@ -281,16 +312,8 @@ public class GuiChatWindow extends JFrame {
 
 	public void append(String style, String text) {
 		try {
-			StyledDocument doc = (StyledDocument) textPane1.getDocument(); // Create
-																			// a
-																			// style
-																			// object
-																			// and
-																			// then
-																			// set
-																			// the
-																			// style
-																			// attributes
+			StyledDocument doc = (StyledDocument) textPane1.getDocument(); // Create a style object and set attributes
+																			
 			doc.insertString(doc.getLength(), text, doc.getStyle(style));
 		} catch (BadLocationException ble) {
 			ble.printStackTrace();
@@ -312,6 +335,15 @@ public class GuiChatWindow extends JFrame {
 	private JTextPane textPane1;
 	private JScrollPane scrollPane4;
 	private JTextArea textArea4;
+	private JMenuBar menuBar;
+	private JMenu mnFile;
+	private JMenuItem mntmSaveChat;
+	private JMenuItem mntmHelp;
+	private JMenuItem mntmExit;
+	private JMenu mnEncryptedChat;
+	private JMenuItem mntmStartEncryptedChat;
+	private JMenuItem mntmStopEncryptedChat;
+	private JMenuItem mntmAuthenticateContactmitm;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
