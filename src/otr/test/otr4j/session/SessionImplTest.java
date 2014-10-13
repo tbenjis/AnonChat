@@ -1,9 +1,10 @@
-package net.java.otr4j.session;
+package otr.test.otr4j.session;
 
 import java.util.logging.Logger;
 
-import net.java.otr4j.OtrPolicy;
-import net.java.otr4j.OtrPolicyImpl;
+import otr.main.otr4j.OtrPolicy;
+import otr.main.otr4j.OtrPolicyImpl;
+import otr.main.otr4j.session.SessionStatus;
 
 public class SessionImplTest extends junit.framework.TestCase {
 

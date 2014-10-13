@@ -1,4 +1,4 @@
-package net.java.otr4j.io;
+package otr.test.otr4j.io;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,9 +7,13 @@ import java.security.KeyPair;
 
 import javax.crypto.interfaces.DHPublicKey;
 
-import net.java.otr4j.crypto.OtrCryptoEngineImpl;
-import net.java.otr4j.io.messages.DHKeyMessage;
-import net.java.otr4j.io.messages.RevealSignatureMessage;
+import otr.main.otr4j.crypto.OtrCryptoEngineImpl;
+import otr.main.otr4j.io.OtrInputStream;
+import otr.main.otr4j.io.OtrOutputStream;
+import otr.main.otr4j.io.SerializationConstants;
+import otr.main.otr4j.io.SerializationUtils;
+import otr.main.otr4j.io.messages.DHKeyMessage;
+import otr.main.otr4j.io.messages.RevealSignatureMessage;
 
 public class IOTest extends junit.framework.TestCase {
 

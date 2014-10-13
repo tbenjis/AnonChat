@@ -1,4 +1,6 @@
-package net.java.otr4j.session;
+package otr.test.otr4j.session;
+
+
 
 /**
  * Created by gp on 2/6/14.

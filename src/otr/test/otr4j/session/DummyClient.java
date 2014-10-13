@@ -1,10 +1,14 @@
-package net.java.otr4j.session;
+package otr.test.otr4j.session;
 
-import net.java.otr4j.OtrEngineHost;
-import net.java.otr4j.OtrException;
-import net.java.otr4j.OtrPolicy;
-import net.java.otr4j.crypto.OtrCryptoEngineImpl;
-import net.java.otr4j.crypto.OtrCryptoException;
+import otr.main.otr4j.OtrEngineHost;
+import otr.main.otr4j.OtrException;
+import otr.main.otr4j.OtrPolicy;
+import otr.main.otr4j.crypto.OtrCryptoEngineImpl;
+import otr.main.otr4j.crypto.OtrCryptoException;
+import otr.main.otr4j.session.InstanceTag;
+import otr.main.otr4j.session.Session;
+import otr.main.otr4j.session.SessionID;
+import otr.main.otr4j.session.SessionImpl;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
