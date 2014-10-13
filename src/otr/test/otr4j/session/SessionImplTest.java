@@ -45,6 +45,8 @@ public class SessionImplTest extends junit.framework.TestCase {
 		pMsg = alice.pollReceivedMessage(); // DH-Key
 		pMsg = bob1.pollReceivedMessage(); // Reveal signature
 		pMsg = alice.pollReceivedMessage(); // Signature
+		
+		
 
 		String msg;
 
@@ -156,6 +158,8 @@ public class SessionImplTest extends junit.framework.TestCase {
 		if (!msg.equals((pMsg = bob.pollReceivedMessage()).getContent()))
 			fail("Received message is different from the sent message.");
 
+		
+		
 		bob.send(alice.getAccount(), msg = "Hey Alice, it means that our communication is encrypted and authenticated.");
 		if (msg.equals(bob.getConnection().getSentMessage()))
 			fail("Message has been transferred unencrypted.");
@@ -219,6 +223,9 @@ public class SessionImplTest extends junit.framework.TestCase {
 
 		alice.send(bob.getAccount(), msg = "Hello Bob, this new IM software you installed on my PC the other day says we are talking Off-the-Record, what's that supposed to mean?");
 
+		//check lets see if we have an encrypted message
+		System.out.println(alice.getConnection().getSentMessage());
+				
 		if (msg.equals(alice.getConnection().getSentMessage()))
 			fail("Message has been transferred unencrypted.");
 

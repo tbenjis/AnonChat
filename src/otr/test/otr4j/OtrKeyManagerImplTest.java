@@ -1,7 +1,6 @@
 package otr.test.otr4j;
 
 
-
 import otr.main.otr4j.OtrKeyManager;
 import otr.main.otr4j.OtrKeyManagerImpl;
 import otr.main.otr4j.session.SessionID;
