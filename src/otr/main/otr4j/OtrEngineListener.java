@@ -1,0 +1,18 @@
+package otr.main.otr4j;
+
+import otr.main.otr4j.session.SessionID;
+
+/**
+ * This interface should be implemented by the host application. It notifies
+ * about session status changes.
+ * 
+ * @author George Politis
+ * 
+ */
+public interface OtrEngineListener {
+	public abstract void sessionStatusChanged(SessionID sessionID);
+
+	public abstract void multipleInstancesDetected(SessionID sessionID);
+
+	public abstract void outgoingSessionChanged(SessionID sessionID);
+}
