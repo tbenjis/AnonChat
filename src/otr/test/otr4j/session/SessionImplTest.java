@@ -74,12 +74,13 @@ public class SessionImplTest extends junit.framework.TestCase {
 			fail("Received message is different from the sent message.");
 
 		bob3.send(alice.getAccount(), msg = "?OTRv23? Another message from another client !!");
+		
 		pMsg = alice.pollReceivedMessage();
 		pMsg = bob3.pollReceivedMessage();
 		pMsg = alice.pollReceivedMessage();
 		pMsg = bob3.pollReceivedMessage();
 		pMsg = alice.pollReceivedMessage();
-
+		
 		bob3.send(alice.getAccount(), msg = "This should be encrypted !");
 		if (msg.equals(bob3.getConnection().getSentMessage()))
 			fail("Message has been transferred unencrypted.");
@@ -324,6 +325,8 @@ public class SessionImplTest extends junit.framework.TestCase {
 
 		if (!msg.equals((pMsg = bob.pollReceivedMessage()).getContent()))
 			fail("Received message is different from the sent message.");
+		
+		System.out.println(msg);
 
 		bob.exit();
 		alice.exit();
