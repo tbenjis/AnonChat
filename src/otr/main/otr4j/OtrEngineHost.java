@@ -9,7 +9,6 @@ package otr.main.otr4j;
 
 
 import java.security.KeyPair;
-import java.util.List;
 
 import otr.main.otr4j.session.InstanceTag;
 import otr.main.otr4j.session.SessionID;
