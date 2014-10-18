@@ -42,12 +42,11 @@ public class SessionImplTest extends junit.framework.TestCase {
 
 		pMsg = alice.pollReceivedMessage(); // Query
 		pMsg = bob1.pollReceivedMessage(); // DH-Commit
-		pMsg = alice.pollReceivedMessage(); // DH-Key
-		pMsg = bob1.pollReceivedMessage(); // Reveal signature
+		pMsg = alice.pollReceivedMessage(); // DH-Key		
+		pMsg = bob1.pollReceivedMessage(); // Reveal signature		
 		pMsg = alice.pollReceivedMessage(); // Signature
 		
 		
-
 		String msg;
 
 		alice.send(bob1.getAccount(), msg = "Hello Bob, this new IM software you installed on my PC the other day says we are talking Off-the-Record, what's that supposed to mean?");

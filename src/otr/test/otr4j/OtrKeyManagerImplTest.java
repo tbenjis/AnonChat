@@ -13,6 +13,7 @@ public class OtrKeyManagerImplTest extends junit.framework.TestCase {
 	public void test() throws Exception {
 		OtrKeyManager keyManager = new OtrKeyManagerImpl("otr.properties");
 		keyManager.generateLocalKeyPair(aliceSessionID);
+		System.out.println(aliceSessionID);
 
 		keyManager.verify(aliceSessionID);
 		assert (keyManager.isVerified(aliceSessionID));
