@@ -446,6 +446,11 @@ public class Buddy {
 		return s != null && s.isConnected() && !s.isClosed();
 	}
 
+	/**
+	 * TODO: Come and check this later
+	 * @param string
+	 * @throws IOException
+	 */
 	public void sendMessage(String string) throws IOException {
 		sendRaw("message " + string);
 	}
