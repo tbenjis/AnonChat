@@ -458,28 +458,7 @@ public class Buddy {
 	 * @throws OtrException 
 	 */
 	public void sendMessage(String string) throws IOException {
-		OtrClient bob = new OtrClient(Config.us);
-		bob.setPolicy(new OtrPolicyImpl(OtrPolicy.ALLOW_V2 | OtrPolicy.ALLOW_V3
-				| OtrPolicy.ERROR_START_AKE));
-		
-		try {
-			bob.secureSession(address);
-		} catch (OtrException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if (bob.getSession().getSessionStatus() != SessionStatus.ENCRYPTED
-				|| bob.getSession().getSessionStatus() != SessionStatus.ENCRYPTED)
-			Logger.log(Logger.SEVERE, this,"The session is not encrypted.");
-		
-		try {
-			string = bob.sendOTRMessage(address, string);
-		} catch (OtrException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sendRaw("message " + string);
+			sendRaw("message " + string);
 	}
 
 	public void sendDisconnect() throws IOException {
