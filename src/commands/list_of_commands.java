@@ -33,7 +33,7 @@ public class list_of_commands {
 			return false;
 		}
 
-		// When the command is not exist then it can be not Anonchat because you
+		// When the command is not exist then it cannot be Anonchat because you
 		// can not send commands yourself
 		return true;
 	}

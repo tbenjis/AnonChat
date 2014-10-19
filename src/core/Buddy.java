@@ -10,6 +10,11 @@ import java.net.SocketException;
 import java.util.Random;
 import java.util.Scanner;
 
+import core.otr.OtrClient;
+import otr.main.otr4j.OtrException;
+import otr.main.otr4j.OtrPolicy;
+import otr.main.otr4j.OtrPolicyImpl;
+import otr.main.otr4j.session.SessionStatus;
 import util.ConfigWriter;
 import util.Tray;
 
@@ -450,8 +455,30 @@ public class Buddy {
 	 * TODO: Come and check this later
 	 * @param string
 	 * @throws IOException
+	 * @throws OtrException 
 	 */
 	public void sendMessage(String string) throws IOException {
+		OtrClient bob = new OtrClient(Config.us);
+		bob.setPolicy(new OtrPolicyImpl(OtrPolicy.ALLOW_V2 | OtrPolicy.ALLOW_V3
+				| OtrPolicy.ERROR_START_AKE));
+		
+		try {
+			bob.secureSession(address);
+		} catch (OtrException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (bob.getSession().getSessionStatus() != SessionStatus.ENCRYPTED
+				|| bob.getSession().getSessionStatus() != SessionStatus.ENCRYPTED)
+			Logger.log(Logger.SEVERE, this,"The session is not encrypted.");
+		
+		try {
+			string = bob.sendOTRMessage(address, string);
+		} catch (OtrException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		sendRaw("message " + string);
 	}
 

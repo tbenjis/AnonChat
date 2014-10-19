@@ -1,4 +1,4 @@
-# Tor state file last generated on 2014-10-18 15:00:51 local time
+# Tor state file last generated on 2014-10-19 15:45:17 local time
 # Other times below are in UTC
 # You *do not* need to edit this file.
 
@@ -13,7 +13,6 @@ EntryGuardAddedBy D165930932CAD4845BDE5E4B269066A7A385847B 0.2.4.23 2014-09-23 1
 EntryGuardPathBias 17.000000 17.000000 17.000000 0.000000 0.000000 0.000000
 EntryGuardPathUseBias 7.000000 7.000000
 EntryGuard ittk42tor 3EDDD0B6FE6C021CE7994ABC5434407187840279 DirCache
-EntryGuardDownSince 2014-10-14 07:55:06 2014-10-14 09:53:13
 EntryGuardAddedBy 3EDDD0B6FE6C021CE7994ABC5434407187840279 0.2.4.23 2014-09-30 22:16:15
 EntryGuardPathBias 16.000000 16.000000 16.000000 0.000000 0.000000 1.000000
 EntryGuardPathUseBias 4.000000 4.000000
@@ -34,7 +33,7 @@ EntryGuard YATR1 4E20E74CCBD0169CD369E2EB56BD97523A79E6D1 DirCache
 EntryGuardDownSince 2014-10-14 07:55:07 2014-10-14 09:53:14
 EntryGuardAddedBy 4E20E74CCBD0169CD369E2EB56BD97523A79E6D1 0.2.4.23 2014-09-18 02:08:38
 TorVersion Tor 0.2.4.23 (git-598c61362f1b3d3e)
-LastWritten 2014-10-18 12:00:51
+LastWritten 2014-10-19 12:45:17
 TotalBuildTimes 67
 CircuitBuildTimeBin 475 1
 CircuitBuildTimeBin 525 4

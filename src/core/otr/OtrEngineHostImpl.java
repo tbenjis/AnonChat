@@ -22,7 +22,7 @@ public class OtrEngineHostImpl implements OtrEngineHost {
 			throws OtrException {
 		OtrClient c = new OtrClient(b.getAddress());
 
-		c.getConnection().send(sessionID.getUserID(), msg);
+		//c.sendOTRMessage(b, msg);
 
 		String msgDisplay = (msg.length() > 10) ? msg.substring(0, 10) + "..."
 				: msg;
