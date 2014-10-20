@@ -9,12 +9,6 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Random;
 import java.util.Scanner;
-
-import core.otr.OtrClient;
-import otr.main.otr4j.OtrException;
-import otr.main.otr4j.OtrPolicy;
-import otr.main.otr4j.OtrPolicyImpl;
-import otr.main.otr4j.session.SessionStatus;
 import util.ConfigWriter;
 import util.Tray;
 
