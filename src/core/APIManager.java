@@ -63,6 +63,11 @@ public class APIManager {
 		}
 	}
 
+	/**
+	 * Required when a new message is received
+	 * @param buddy
+	 * @param s
+	 */
 	public static void fireMessage(Buddy buddy, String s) {
 		try {
 			Logger.log(Logger.DEBUG, "API", buddy.getAddress() + " sent " + s);
