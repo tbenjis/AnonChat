@@ -204,11 +204,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		timestampStyle = ((StyledDocument) textPane1.getDocument()).addStyle(
 				"Time Stamp", null);
 		StyleConstants.setForeground(timestampStyle, Color.gray.darker());
-		//OTR style
+		/** //OTR style
 		OTRStyle = ((StyledDocument) textPane1.getDocument()).addStyle(
 				"<<OTR>>", null);
 		StyleConstants.setForeground(OTRStyle, Color.GREEN.darker());
-		
+		**/
 		myNameStyle = ((StyledDocument) textPane1.getDocument()).addStyle("Me",
 				null);
 		StyleConstants.setForeground(myNameStyle, Color.blue.darker());

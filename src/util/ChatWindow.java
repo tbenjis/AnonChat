@@ -62,11 +62,11 @@ public class ChatWindow {
 		else if (type == 5) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
 			w.append("Me", delay + "Me <<OTR>> ");
-			w.addUrlText("<<OTR>>", new_entry.trim() + "\n");
+			w.addUrlText("Me", new_entry.trim() + "\n");
 		} else if (type == 6) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
 			w.append("Them", delay + "* " +  w.b.toString()+" <<OTR>> ");
-			w.addUrlText("<<OTR>>", new_entry + "\n");
+			w.addUrlText("Them", new_entry + "\n");
 		}
 		// Private
 		else if (type == 7) {
