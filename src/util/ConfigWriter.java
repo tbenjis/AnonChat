@@ -122,8 +122,8 @@ boolean save = false;
 	}
 
 	Config.us = assign("ourId", null, Config.prop);
-	Config.SOCKS_PORT = assignInt("SOCKS_PORT", 11160, Config.prop);
-	Config.LOCAL_PORT = assignInt("LOCAL_PORT", 8978, Config.prop);
+	Config.SOCKS_PORT = assignInt("SOCKS_PORT", 11233, Config.prop);
+	Config.LOCAL_PORT = assignInt("LOCAL_PORT", 9396, Config.prop);
 	TCPort.profile_name = assign("profile_name", "", Config.prop);
 	TCPort.profile_text = assign("profile_text", "", Config.prop);
 	Config.lang = assign("lang", Config.dlang, Config.prop);

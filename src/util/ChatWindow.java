@@ -61,11 +61,11 @@ public class ChatWindow {
 		// Send or receive OTR request
 		else if (type == 5) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
-			w.append("Me", delay + "Me --> ");
+			w.append("Me", delay + "Me <<OTR>> ");
 			w.addUrlText("Plain", new_entry.trim() + "\n");
 		} else if (type == 6) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
-			w.append("Them", delay + "Them --> ");
+			w.append("Them", delay + "Them <<OTR>> ");
 			w.addUrlText("Plain", new_entry + "\n");
 		}
 		// Private
