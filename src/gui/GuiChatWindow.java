@@ -175,9 +175,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		mntmStartEncryptedChat = new JMenuItem("Start Encrypted Chat");
 		mnEncryptedChat.add(mntmStartEncryptedChat);
+		mntmStartEncryptedChat.addActionListener(this);
 		
 		mntmStopEncryptedChat = new JMenuItem("Stop Encrypted Chat");
 		mnEncryptedChat.add(mntmStopEncryptedChat);
+		mntmStopEncryptedChat.addActionListener(this);
 		mnEncryptedChat.add(new JSeparator());
 		
 		mntmAuthenticateContactmitm = new JMenuItem("Authenticate Contact (MITM)");
@@ -400,6 +402,20 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		if(e.getSource() == this.mntmExit){
 			dispose();
+		}
+		
+		if(e.getSource() == this.mntmStartEncryptedChat){
+			//begin the encrypted chat process
+			
+			//after the process is complete disable stop encrypted chat menu
+			this.mntmStopEncryptedChat.setEnabled(false);
+		}
+		
+		if(e.getSource() == this.mntmStopEncryptedChat){
+			//begin the encrypted chat process
+			
+			//after the process is complete disable start encrypted chat menu
+			this.mntmStartEncryptedChat.setEnabled(false);
 		}
 		
 	}
