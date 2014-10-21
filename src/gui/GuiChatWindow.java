@@ -183,10 +183,16 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		mntmStopEncryptedChat = new JMenuItem("Stop Encrypted Chat");
 		mnEncryptedChat.add(mntmStopEncryptedChat);
 		mntmStopEncryptedChat.addActionListener(this);
+		
 		mnEncryptedChat.add(new JSeparator());
 		
 		mntmAuthenticateContactmitm = new JMenuItem("Authenticate Contact (MITM)");
 		mnEncryptedChat.add(mntmAuthenticateContactmitm);
+		
+		//disable stop encryption menu during initialization
+		this.mntmStopEncryptedChat.setEnabled(false);
+		this.mntmAuthenticateContactmitm.setEnabled(false);
+		
 		addWindowFocusListener(new WindowAdapter() {
 
 			@Override
@@ -424,10 +430,17 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		if(e.getSource() == this.mntmStopEncryptedChat){
 			//begin the encrypted chat process
 			
-			this.mntmStopEncryptedChat.setEnabled(false);
-			
-			//after the process is complete disable start encrypted chat menu
-			this.mntmStartEncryptedChat.setEnabled(true);
+			//findout if the client is fully connected
+			if (b.isFullyConnected())
+			{
+				this.mntmStopEncryptedChat.setEnabled(false);
+				
+				//after the process is complete disable start encrypted chat menu
+				this.mntmStartEncryptedChat.setEnabled(true);
+			}else{
+				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
+
+			}
 		}
 		
 	}
