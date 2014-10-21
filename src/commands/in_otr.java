@@ -10,6 +10,7 @@ import core.Buddy;
  */
 public class in_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w) {
-		ChatWindow.update_window(5, w, s.substring(5), "", s, !buddy.isFullyConnected());
+		String msg = " from "+buddy.toString();
+		ChatWindow.update_window(5, w, s.substring(5)+msg, "", s, !buddy.isFullyConnected());
 	}
 }

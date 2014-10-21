@@ -11,6 +11,7 @@ import core.Buddy;
 public class out_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w,
 			boolean with_delay) {
-		ChatWindow.update_window(4, w, s.substring(5), "", "", with_delay);
+		String msg = " from you";
+		ChatWindow.update_window(6, w, s.substring(5)+msg, "", "", with_delay);
 	}
 }
