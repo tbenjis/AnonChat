@@ -17,6 +17,7 @@ import java.util.Date;
 import javax.swing.GroupLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -28,6 +29,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTML;
+
 import util.ChatWindow;
 import commands.list_of_commands;
 import core.Buddy;
@@ -42,6 +44,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Font;
 
 /**
@@ -407,15 +410,24 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		if(e.getSource() == this.mntmStartEncryptedChat){
 			//begin the encrypted chat process
 			
-			//after the process is complete disable stop encrypted chat menu
-			this.mntmStopEncryptedChat.setEnabled(false);
+			//findout if the client is fully connected
+			if (b.isFullyConnected())
+			{
+				//after the process is complete disable stop encrypted chat menu
+				this.mntmStartEncryptedChat.setEnabled(false);
+				this.mntmStopEncryptedChat.setEnabled(true);
+			}else{
+				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot initiate encryption. Please try again.");
+			}
 		}
 		
 		if(e.getSource() == this.mntmStopEncryptedChat){
 			//begin the encrypted chat process
 			
+			this.mntmStopEncryptedChat.setEnabled(false);
+			
 			//after the process is complete disable start encrypted chat menu
-			this.mntmStartEncryptedChat.setEnabled(false);
+			this.mntmStartEncryptedChat.setEnabled(true);
 		}
 		
 	}
