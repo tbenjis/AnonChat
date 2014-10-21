@@ -13,7 +13,7 @@ public class ChatWindow {
 	/**
 	 * Append messages on the chat window
 	 * @param type 1=Normal message from me, 2=Normal message form them,
-	 * 3=A message from me, 4=A message from them, 5=Page
+	 * 3=A message from me, 4=A message from them, 5=OTR request
 	 * @param w
 	 * @param new_entry
 	 * @param new_textarea
@@ -58,7 +58,7 @@ public class ChatWindow {
 			w.append("Them", delay + "* " + w.b.toString() + " ");
 			w.addUrlText("Plain", new_entry + "\n");
 		}
-		// Send or receive a page
+		// Send or receive OTR request
 		else if (type == 5) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
 			w.append("Me", delay + "Me --> ");

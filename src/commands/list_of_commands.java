@@ -22,6 +22,10 @@ public class list_of_commands {
 			in_me.command(buddy, s, w);
 			return false;
 		} 
+		if (command.equals("/otr")) {
+			in_otr.command(buddy, s, w);
+			return false;
+		}
 		return true;
 	}
 
@@ -32,7 +36,7 @@ public class list_of_commands {
 			out_me.command(buddy, s, w, with_delay);
 			return false;
 		}
-
+		
 		// When the command is not exist then it cannot be Anonchat because you
 		// can not send commands yourself
 		return true;

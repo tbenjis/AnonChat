@@ -422,6 +422,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				//after the process is complete disable stop encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(false);
 				this.mntmStopEncryptedChat.setEnabled(true);
+				//lets start encryption
+				list_of_commands.in_command(b, "/otr Requesting Encrypted Chat", this);
+				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot initiate encryption. Please try again.");
 			}
