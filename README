@@ -40,7 +40,7 @@ Message Format
 type: byte array
 message separator: 0x0a (LF)
 decode as string:
-<code> replace '\r\n' with '\n' then '\n' with "\n" (LF) </code>
+replace '\r\n' with '\n' then '\n' with "\n" (LF)
 
 
 Command Format
