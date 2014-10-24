@@ -7,7 +7,6 @@ import listeners.APIListener;
 public class APIManager {
 	private static ArrayList<APIListener> listeners = new ArrayList<APIListener>();
 
-
 	public static void addEventListener(APIListener apil) {
 		listeners.add(apil);
 	}
