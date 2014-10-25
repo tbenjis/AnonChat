@@ -1,3 +1,5 @@
+You need Java to run this application
+======================================
 Please install the newest Java from here:
 http://www.java.com/de/download/
 
