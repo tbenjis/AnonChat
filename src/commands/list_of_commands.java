@@ -36,6 +36,7 @@ public class list_of_commands {
 			out_me.command(buddy, s, w, with_delay);
 			return false;
 		}
+		/** Use this to detect an OTR message comming in **/
 		if (command.equals("/otr")) {
 			out_otr.command(buddy, s, w, with_delay);
 			return false;
