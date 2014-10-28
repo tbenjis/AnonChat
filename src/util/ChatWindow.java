@@ -63,6 +63,7 @@ public class ChatWindow {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
 			w.append("Me", delay + "Me <<OTR>> ");
 			w.addUrlText("Me", new_entry.trim() + "\n");
+		//incomming OTR message
 		} else if (type == 6) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
 			w.append("Them", delay + "* " +  w.b.toString()+" <<OTR>> ");
@@ -89,6 +90,7 @@ public class ChatWindow {
 
 			try {
 				if (!add_delay) {
+					//sends the message
 					w.b.sendMessage(send);
 				} else {
 					FileOutputStream fos = new FileOutputStream(
