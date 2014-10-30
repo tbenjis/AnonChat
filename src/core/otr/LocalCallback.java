@@ -3,10 +3,6 @@ package core.otr;
 import gui.Gui;
 import gui.GuiChatWindow;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-
 import commands.list_of_commands;
 import core.Buddy;
 import core.Logger;
@@ -39,7 +35,7 @@ public class LocalCallback implements OTRCallbacks{
 	}
 
 	public void goneSecure(OTRContext context) {
-		Logger.log(Logger.INFO, this.getClass(),"\033[31mAKE succeeded\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"AKE succeeded");
 	}
 
 	public int isLoggedIn(String accountname, String protocol,
@@ -54,19 +50,19 @@ public class LocalCallback implements OTRCallbacks{
 	public void newFingerprint(OTRInterface us,
 			String accountname, String protocol, String username,
 			byte[] fingerprint) {
-		Logger.log(Logger.INFO, this.getClass(),"\033[31mNew fingerprint is created.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"New fingerprint is created.");
 	}
 
 	public void stillSecure(OTRContext context, int is_reply) {
-		Logger.log(Logger.INFO, this.getClass(),"\033[31mStill secure.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"Still secure.");
 	}
 
 	public void updateContextList() {
-		Logger.log(Logger.INFO, this.getClass(),"\033[31mUpdating context list.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"Updating context list.");
 	}
 
 	public void writeFingerprints() {
-		Logger.log(Logger.INFO, this.getClass(),"\033[31mWriting fingerprints.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"Writing fingerprints.");
 	}
 
 	public String errorMessage(OTRContext context, int err_code) {
@@ -80,26 +76,26 @@ public class LocalCallback implements OTRCallbacks{
 	public void handleMsgEvent(int msg_event,
 			OTRContext context, String message) {
 		if(msg_event==OTRCallbacks.OTRL_MSGEVENT_CONNECTION_ENDED){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe private connection has already ended.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"The private connection has already ended.");
 		}else if(msg_event==OTRCallbacks.OTRL_MSGEVENT_RCVDMSG_NOT_IN_PRIVATE){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mWe received an encrypted message, but we are not in" +
-					"encryption state.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"We received an encrypted message, but we are not in" +
+					"encryption state.");
 		}
 	}
 
 	public void handleSmpEvent(int smpEvent,
 			OTRContext context, int progress_percent, String question) {
 		if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_SECRET){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe other side has initialized SMP." +
-					" Please respond with /rs.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"The other side has initialized SMP." +
+					" Please respond with /rs.");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_ANSWER){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe other side has initialized SMP, with question:" +
+			Logger.log(Logger.INFO, this.getClass(),"The other side has initialized SMP, with question:" +
 					question + ", "+
-			" Please respond with /rs.\033[0m");
+			" Please respond with /rs.");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mSMP succeeded.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded.");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_FAILURE){
-			Logger.log(Logger.INFO, this.getClass(),"\033[31mSMP failed.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"SMP failed.");
 		}
 		
 		

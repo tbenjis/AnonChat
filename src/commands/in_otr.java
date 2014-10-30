@@ -14,7 +14,7 @@ import core.Buddy;
 import core.Config;
 import core.Logger;
 /**
- * Display a messeng that was sent by a contact
+ * Display a messing that we send
  * @author tbenjis
  *
  */
@@ -49,7 +49,7 @@ public class in_otr {
 				conn.disconnect(callback);
 			}
 			else{
-				System.out.println("\033[31mTo OTR:"+str.length()+":\033[0m"+str);
+				Logger.log(Logger.INFO,"IN_OTR","\033[31mTo OTR:"+str.length()+":\033[0m"+str);
 				OTRTLV[] tlvs = new OTRTLV[1];
 				tlvs[0]=new TLV(9, "TestTLV".getBytes());
 				us.messageSending(Config.us, buddy.getClient(), buddy.getAddress(),

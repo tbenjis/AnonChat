@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -253,14 +252,13 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			if (!textArea4.getText().trim().equals("")) {
 				String msg = textArea4.getText();
 				//check if otr is enabled
+				if(OTR_ENABLED)
+					msg = "/otr "+msg;
+				
 				boolean right = true;
 				if (msg.startsWith("/")) {
-					if(OTR_ENABLED)
-					{
-						right = list_of_commands.in_command(b, "/otr "+msg, this, alice, callback);
-					}else{
+					
 						right = list_of_commands.in_command(b, msg, this);
-					}
 				}
 				if (right) {
 					ChatWindow.update_window(1, this, msg, "", msg,
@@ -393,8 +391,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private JLabel lblStatus;
 	private JLabel lblNotEncrypted;
 	//needed for otr
-	private UserState alice;
-	private LocalCallback callback;
+	private OTRInterface alice;
+	private OTRCallbacks callback;
 	private boolean OTR_ENABLED = false;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
@@ -466,7 +464,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				//after the process is complete disable start encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(true);
 				OTR_ENABLED = false;
-				list_of_commands.in_command(b, "/otr /disc", this, alice, callback);
+				list_of_commands.in_command(b, "/otr /disc", this);
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
@@ -474,5 +472,14 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			}
 		}
 		
+	}
+	//get us and callback
+	public OTRInterface getUs()
+	{
+		return this.alice;
+	}
+	public  OTRCallbacks getOTRCall()
+	{
+		return this.callback;
 	}
 }

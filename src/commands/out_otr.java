@@ -16,14 +16,15 @@ import core.Logger;
 public class out_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w,
 			boolean with_delay, OTRInterface us, OTRCallbacks callback) {
-						
-		Logger.log(Logger.INFO, "OUT_OTR","\033[31mFrom network:"+s.length()+":\033[35m"+s+"\033[0m");
+		
+				
+		Logger.log(Logger.INFO, "OUT_OTR","From network:"+s.length()+": "+s);
 		StringTLV stlv;
 		try {
 			stlv = us.messageReceiving(Config.us, buddy.getClient(), buddy.getAddress(), s, callback);
 			if(stlv!=null){
 				s=stlv.msg;
-				Logger.log(Logger.INFO, "OUT_OTR","\033[31mFrom OTR:"+s.length()+":\033[0m"+s);
+				Logger.log(Logger.INFO, "OUT_OTR","From OTR:"+s.length()+": "+s);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
