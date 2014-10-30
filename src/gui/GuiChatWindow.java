@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -32,9 +33,12 @@ import javax.swing.text.html.HTML;
 
 import util.ChatWindow;
 import ca.uwaterloo.crysp.otr.UserState;
+import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
+import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import commands.list_of_commands;
 import core.Buddy;
 import core.Config;
+import core.otr.LocalCallback;
 import listeners.LinkController;
 import fileTransfer.FileDrop;
 import fileTransfer.FileSender;
@@ -422,9 +426,14 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		if(e.getSource() == this.mntmStartEncryptedChat){
 			//begin the encrypted chat process
-			//create userstate
-			UserState us = new UserState
-					(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+			// Generate the keys
+			OTRInterface alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+			try {
+				OTRCallbacks callback = new LocalCallback(b);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			//findout if the client is fully connected
 			if (b.isFullyConnected())
