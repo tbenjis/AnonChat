@@ -31,6 +31,7 @@ import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTML;
 
 import util.ChatWindow;
+import ca.uwaterloo.crysp.otr.UserState;
 import commands.list_of_commands;
 import core.Buddy;
 import core.Config;
@@ -421,6 +422,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		if(e.getSource() == this.mntmStartEncryptedChat){
 			//begin the encrypted chat process
+			//create userstate
+			UserState us = new UserState
+					(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
 			
 			//findout if the client is fully connected
 			if (b.isFullyConnected())

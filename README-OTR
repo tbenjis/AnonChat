@@ -1,0 +1,295 @@
+		 Java Off-the-Record Messaging Library
+			 v. 0.1.0, 3 Oct 2009
+
+This is a library in Java which implements Off-the-Record (OTR) Messaging.
+
+OTR allows you to have private conversations over IM by providing:
+ - Encryption
+   - No one else can read your instant messages.
+ - Authentication
+   - You are assured the correspondent is who you think it is.
+ - Deniability
+   - The messages you send do _not_ have digital signatures that are
+     checkable by a third party.  Anyone can forge messages after a
+     conversation to make them look like they came from you.  However,
+     _during_ a conversation, your correspondent is assured the messages
+     he sees are authentic and unmodified.
+ - Perfect forward secrecy
+   - If you lose control of your private keys, no previous conversation
+     is compromised.
+
+For more information on Off-the-Record Messaging, see
+http://otr.cypherpunks.ca/
+
+LIBRARY USAGE
+
+1. Initialization
+
+You will need a UserState.  A UserState encapsulates the
+list of known fingerprints and the list of private keys, so it should be
+"one per user".  Many OTR-enabled programs (such as IM clients) only have a 
+single user, so for them, you can just create a single one, and use it
+throughout.  Create a UserState as follows:
+
+    UserState us = new UserState
+			(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+
+2. Setting up the UI functions
+
+You need to let the library know how to do any UI it might require
+(error messages, confirming new fingerprints, etc.).  To this end, you
+need to define a number of UI functions, and collect them in an
+OTRCallbacks class.
+
+You can find a list of the UI functions in 
+ca.uwaterloo.crysp.otr.iface.OTRCallbacks.java .
+
+3. Sending messages
+
+When you have a message you're about to send, you'll need to know four
+things: you account name, the protocol id, the name of the recipient, and
+the message.
+
+The protocol id is just a unique string that is used to distinguish
+the user foo on AIM from the user foo on MSN, etc.  It can be anything
+you like, so long as you're consistent, but if you've got nothing better
+to use, you may as well use the ids from pidgin.  (Programs that use the
+same protocol ids can share fingerprint and private key files.)  The
+pidgin protocol id for AIM/ICQ is "prpl-oscar".
+
+Note that a name does not uniquely identify a user (as shown by the
+"foo" example above).  Even if you know both the name and the protocol,
+it may not identify the user, since there may be multiple "foo" users on
+IRC, on different servers.  But the *three* items (your account name,
+protocol id, their name) _must_ uniquely identify a user, so your
+account name needs to include any network identifier, such as a server
+name.  Examples would be "foo@irc.freenode.net" or "foo@jabber.org".
+Protocols such as AIM that do not have separate networks can just use
+"foo", of course.
+
+To encrypt the message (if necessary; the library keeps track of which
+users you have secure connections to, so you should *always* call this
+next function), simply do this:
+
+	String result = conn.messageSending(accountname, protocol,
+	        recipient, message, tlvs, fragmentPolicy, callback);
+
+tlvs should usually be null.  If it's not, then it points to an array of
+OTRTLVs which represent machine-readable data to send along with this
+message.
+
+If an OTRException is thrown, then the library tried to encrypt the
+message, but for some reason failed.  DO NOT send the message in the
+clear in that case.
+
+If the result String is non-NULL, then you
+should replace your message with the contents of the result, and
+send that instead.
+
+Once the message is encrypted, it may still be too large to send over
+the network in a single piece.  fragmentPolicy determines which, if any,
+fragments to return instead of sending them immediately.  For example,
+you may wish to send all fragments except the last one, which is handled
+differently.  Valid policies may be found in Proto.java . If you want to
+send the message by yourself, set it to Policy.FRAG_SEND_SKIP, and the
+result String will be returned.
+
+4. Receiving messages
+
+Receiving messages is similarly straightforward.  Again, you need to
+know four things: your account name, the protocol id, the sender's name,
+and the message.
+
+	StringTLV stlv = conn.messageReceiving(accountname, protocol,
+	        recipient, message, callback);
+
+If messageReceiving returns null, then the message you received was
+an internal protocol message, and no message should be delivered to the
+user.
+
+If it returns non-null, then replace the received message with the 
+contents of msg in stlv, and deliver that to the user instead.  
+
+If the tlvs portion of stlv is set to non-null, then there is
+machine-readable data that was sent along with this message.
+
+5. Socialist Millionaires' Protocol
+
+The Socialist Millionaires' Protocol (SMP) is a way to detect
+eavesdropping and man-in-the-middle attacks without requiring users to
+work with fingerprints.  This feature was added to the C version of
+libotr starting in version 3.1.0. 
+
+In version 3.0.0, the only method available to authenticate a buddy was
+fingerprint verification.  However, many users who are unfamiliar with
+cryptography do not understand what a fingerprint is or how it is useful.
+Also, the verification itself relied on the user obtaining an authentic
+copy of the other party's fingerprint somehow.  The simplest way to do so
+may be to relay the displayed hexadecimal values during a phone call,
+but this is a large enough hassle that many users omit fingerprint
+verification altogether.
+
+To allow for a method of authentication that is both easier to understand
+and easier to use, OTR now includes the Socialist Millionaires' Protocol
+(SMP).  SMP runs as follows: each user inputs a secret string, say "x"
+and "y".  They then exchange a series of messages which reveal the value
+of (x==y), but no additional information about the inputs.  This allows
+users to determine whether they hold the same secret information with no
+danger of revealing that secret to an attacker.
+
+To see how this is useful for authentication in OTR, assume that Alice
+and Bob are chatting over OTR for the first time, though they know each
+other well in real life.  Alice may send Bob the following message:
+"Let's make our shared secret the name of that restaurant we both like
+in Ottawa."
+
+Now Alice and Bob run SMP.  If Alice is actually talking to Bob directly,
+then they will both type in the same restaurant name and SMP will return
+success (x==y).  However, if an attacker is impersonating Bob or trying
+to eavesdrop on the conversation, they will have no idea which restaurant
+Alice has in mind, and will type in an incorrect value, causing SMP to
+fail.  Note that for security reasons, the values compared in the SMP
+are actually hashes of several pieces of data, including both parties'
+fingerprints, along with their respective secrets.  The users, however,
+are never exposed to this additional data.
+
+Thus, SMP turns the problem of obtaining an authentic copy of a
+fingerprint into the much simpler problem of obtaining any shared secret,
+or simply of drawing on shared experiences to generate one.
+
+For detailed information on how SMP works, see the paper by Boudot,
+Schoenmakers and Traore titled "A Fair and Efficient Solution to the
+Socialist Millionaires Problem" (2001), on which our solution is based.
+
+5.1 Using SMP
+
+Recall from above that SMP takes one input string from each
+user and outputs either failure or success.  You will also need the
+appropriate ConnContext, which can be obtained as
+
+        OTRContext conn = us.getContext(username, protocol, recipient);
+
+5.1.1. Initiating
+
+If you wish to initiate SMP for a user named Alice, you would use
+ConnContext.initiateSmp() or ConnContext.initiateSmp_q():
+
+	conn.initiateSmp(secret, callback);
+	or
+	conn.initiateSmp_q(question, secret, callback);
+
+Here, secret is the secret text as entered by Alice,
+for example, "kitten", and question is the suggested question entered
+by Alice, for example, "What is my favorite pet?" This method will cause
+ a message to be sent containing an appropriate TLV.SMP1 .
+
+5.1.2. Responding
+
+If you wish to continue SMP by supplying the secret for a second user
+named Bob, you would use ConnContext.respondSmp():
+
+	conn.respondSmp(secret, callback);
+
+The arguments for this method are the same as ConnContext.initiateSmp().
+This method will send a message with an appropriate TLV.SMP2.
+
+5.1.3. Aborting
+
+If you wish to abort SMP for any reason, including errors occuring
+during the protocol, you should use ConnContext.abortSmp():
+
+	conn.abortSmp(callback);
+
+This method will cause the other user to abandon the current state of
+SMP by sending an appropriate TLV.SMP_ABORT .
+
+6. Demo Application
+
+There is a demo application in the package ca.uwaterloo.crysp.otr.demo.
+To be able to run the demo, make sure you are using Sun JRE.
+
+Example of how to run the demo under Linux:
+
+First run ./build to compile the source. You need to install libotr to
+compile the c version of the demo. If you don't have it, you can still
+run two java instances.
+
+Next, run ./run_alice (or ./run_alice_c if you have compiled the c
+version), and then run ./run_bob. There should be messages showing
+"Connected to Alice" and "Connected to Bob".
+
+Next, type any messages(not starting with '/') in either console. The
+messages will be automatically encrypted. Both the encrypted and the
+plaintext messages will be displayed.
+
+If you want to start SMP, type "/is", or "/isq" if you have a suggested
+question for the other side. The commands to respond to and abort SMP
+are "/rs" and "/as" respectively.
+ 
+To end the private conversation, type "/disc" (disconnect).
+
+7. Demo Application on BlackBerry Simulator
+
+To demonstrate that it is easy to migrate this library onto different
+platforms (with different cryptography library providers), we also
+implemented the library on BlackBerry simulator (J2ME, with RIM crypto
+library).
+
+To run the demo application, you will need to install BlackBerry JDE. 
+
+Steps to run the demo on BlackBerry simulator:
+
+First start BlackBerry JDE, and open otr-bb.jdw in the java-otr
+directory.
+
+Next, select "Build->Build All and Run" in the menu. The BlackBerry
+simulator will startup.
+
+Next, in the simulator, choose "Downloads -> otr-client". The demo will
+start.
+
+Next, start either ./run_alice or ./run_alice_c on your local machine,
+and type the ip address or domain name, and port number 3333, into the
+demo application on Blackberry simulator. Click "Connect", and the two
+clients will be connected.
+
+Then, type any messages in either client. The messages will be
+automatically encrypted.
+
+8. Known Issues
+
+It is possible for some machines to halt at the keypair generation
+process, possibly due to the machine-specific randomness generation.
+
+LICENSE
+
+The Java Off-the-Record Messaging library is
+covered by the following (LGPL) license:
+
+  Java OTR library
+  Copyright (C) 2008-2009  Ian Goldberg, Muhaimeen Ashraf, Andrew Chung,
+                           Can Tang
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of version 2.1 of the GNU Lesser General
+  Public License as published by the Free Software Foundation.
+
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+CONTACT
+
+To report problems, comments, suggestions, patches, etc., you can email
+the authors:
+
+Ian Goldberg : <iang@cs.uwaterloo.ca>
+Can Tang     : <c24tang@gmail.com>
+
+For more information on Off-the-Record Messaging, visit
+http://otr.cypherpunks.ca/
