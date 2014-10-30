@@ -21,8 +21,8 @@ public class list_of_commands {
 		} else if (command.equals("/me")) {
 			in_me.command(buddy, s, w);
 			return false;
-		} else if (command.equals("/otr")) {
-			in_otr.command(buddy, s, w, w.getUs(), w.getOTRCall());
+		} else if (command.equals("/otr") || command.startsWith("?OTR")) {
+			in_otr.command(buddy, s, w, w.getUs(), w.getOTRCall(), w.getOTRContext());
 			return false;
 		}
 		
@@ -37,7 +37,7 @@ public class list_of_commands {
 			return false;
 		}
 		/** Use this to detect an OTR message coming in **/
-		if (command.equals("/otr")) {
+		if (command.equals("/otr") || command.startsWith("?OTR")) {
 			out_otr.command(buddy, s, w, with_delay, w.getUs(), w.getOTRCall());
 			return false;
 		}

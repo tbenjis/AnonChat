@@ -33,6 +33,7 @@ import javax.swing.text.html.HTML;
 import util.ChatWindow;
 import ca.uwaterloo.crysp.otr.UserState;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
+import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import commands.list_of_commands;
 import core.Buddy;
@@ -394,6 +395,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private OTRInterface alice;
 	private OTRCallbacks callback;
 	private boolean OTR_ENABLED = false;
+	private OTRContext conn;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
@@ -437,12 +439,12 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			{
 				//begin the encrypted chat process
 				// Generate the keys
-				 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+				 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
 				 callback = new LocalCallback(b);
+				 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
 				 //set otr encryption enabled
 				 OTR_ENABLED = true;
 				
-			
 				//after the process is complete disable stop encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(false);
 				this.mntmStopEncryptedChat.setEnabled(true);
@@ -463,8 +465,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				
 				//after the process is complete disable start encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(true);
+				
+				list_of_commands.in_command(b, "/disc", this);
 				OTR_ENABLED = false;
-				list_of_commands.in_command(b, "/otr /disc", this);
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
@@ -481,5 +484,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	public  OTRCallbacks getOTRCall()
 	{
 		return this.callback;
+	}
+	public  OTRContext getOTRContext()
+	{
+		return this.conn;
 	}
 }

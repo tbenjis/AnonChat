@@ -8,6 +8,7 @@ import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import ca.uwaterloo.crysp.otr.iface.OTRTLV;
 import ca.uwaterloo.crysp.otr.iface.Policy;
+import gui.Gui;
 import gui.GuiChatWindow;
 import util.ChatWindow;
 import core.Buddy;
@@ -19,12 +20,11 @@ import core.Logger;
  *
  */
 public class in_otr {
-	public static void command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback) {
-		OTRContext conn;
-		
+	public static void command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback, OTRContext conn) {
+				
 		//get the next 5 string
-		String str = s.substring(5);
-		conn=us.getContext(Config.us, buddy.getClient(), buddy.getAddress());
+		String str = s;
+		Logger.log(Logger.INFO, "IN_OTR", Config.us+" "+buddy.getClient()+" "+buddy.getAddress());
 		try {
 			
 			if(str.startsWith("/isq")){
@@ -49,19 +49,23 @@ public class in_otr {
 				conn.disconnect(callback);
 			}
 			else{
-				Logger.log(Logger.INFO,"IN_OTR","\033[31mTo OTR:"+str.length()+":\033[0m"+str);
-				OTRTLV[] tlvs = new OTRTLV[1];
-				tlvs[0]=new TLV(9, "TestTLV".getBytes());
-				us.messageSending(Config.us, buddy.getClient(), buddy.getAddress(),
-						str, tlvs, Policy.FRAGMENT_SEND_ALL, callback);
+				Logger.log(Logger.INFO,"IN_OTR","Converting to OTR:"+str.length()+":"+str);
+				//OTRTLV[] tlvs = new OTRTLV[1];
+				//tlvs[0]=new TLV(9, "TestTLV".getBytes());
+				str = us.messageSending(Config.us, buddy.getClient(), buddy.getAddress(),
+						str, null, Policy.FRAGMENT_SEND_ALL, callback);
+				if (str == null){
+					Logger.log(Logger.SEVERE, "IN_OTR","Failure Encrypting message");
+				}
+				//Logger.log(Logger.INFO, "IN_OTR",result);
 				/*if(str.length()!=0){
-					System.out.println("\033[31mTo network:"+str.length()+":\033[35m"+str+"\033[0m");
-					conn.fragmentAndSend(str,  callback);
+					Logger.log(Logger.INFO, "IN_OTR","To network:"+str.length()+":"+str+"");
+					//conn.fragmentAndSend(str,  callback);
 				}*/
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChatWindow.update_window(5, w, s.substring(5), "", s, !buddy.isFullyConnected());
+		ChatWindow.update_window(5, w, str, "", str, !buddy.isFullyConnected());
 	}
 }

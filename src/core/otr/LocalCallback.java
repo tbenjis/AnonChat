@@ -1,8 +1,8 @@
 package core.otr;
 
+import util.ChatWindow;
 import gui.Gui;
 import gui.GuiChatWindow;
-
 import commands.list_of_commands;
 import core.Buddy;
 import core.Logger;
@@ -27,7 +27,7 @@ public class LocalCallback implements OTRCallbacks{
 		
 		//get chat window
 		GuiChatWindow w = Gui.getChatWindow(bud, true, true);		
-		list_of_commands.in_command(bud, msg, w);
+		ChatWindow.update_window(5, w, msg, "", msg, !bud.isFullyConnected());
 	}
 
 	public int getOtrPolicy(OTRContext conn) {
@@ -44,7 +44,7 @@ public class LocalCallback implements OTRCallbacks{
 	}
 
 	public int maxMessageSize(OTRContext context) {
-		return 1000;
+		return 3000;
 	}
 
 	public void newFingerprint(OTRInterface us,
