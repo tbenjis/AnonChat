@@ -253,10 +253,14 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			if (!textArea4.getText().trim().equals("")) {
 				String msg = textArea4.getText();
 				//check if otr is enabled
-
 				boolean right = true;
 				if (msg.startsWith("/")) {
-					right = list_of_commands.in_command(b, msg, this);
+					if(OTR_ENABLED)
+					{
+						right = list_of_commands.in_command(b, "/otr "+msg, this, alice, callback);
+					}else{
+						right = list_of_commands.in_command(b, msg, this);
+					}
 				}
 				if (right) {
 					ChatWindow.update_window(1, this, msg, "", msg,
@@ -388,6 +392,10 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private JMenuItem mntmAuthenticateContactmitm;
 	private JLabel lblStatus;
 	private JLabel lblNotEncrypted;
+	//needed for otr
+	private UserState alice;
+	private LocalCallback callback;
+	private boolean OTR_ENABLED = false;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
@@ -431,14 +439,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			{
 				//begin the encrypted chat process
 				// Generate the keys
-				OTRInterface alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
-				try {
-					OTRCallbacks callback = new LocalCallback(b);
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+				 callback = new LocalCallback(b);
+				 //set otr encryption enabled
+				 OTR_ENABLED = true;
+				
 			
 				//after the process is complete disable stop encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(false);
@@ -460,6 +465,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				
 				//after the process is complete disable start encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(true);
+				OTR_ENABLED = false;
+				list_of_commands.in_command(b, "/otr /disc", this, alice, callback);
+				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
 

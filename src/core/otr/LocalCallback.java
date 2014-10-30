@@ -19,7 +19,7 @@ public class LocalCallback implements OTRCallbacks{
 	
 	Buddy bud;
 	
-	public LocalCallback(Buddy b) throws IOException{
+	public LocalCallback(Buddy b) {
 		bud=b;
 	}
 
