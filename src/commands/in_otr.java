@@ -12,6 +12,7 @@ import gui.GuiChatWindow;
 import util.ChatWindow;
 import core.Buddy;
 import core.Config;
+import core.Logger;
 /**
  * Display a messeng that was sent by a contact
  * @author tbenjis
@@ -27,19 +28,24 @@ public class in_otr {
 		try {
 			
 			if(str.startsWith("/isq")){
-				System.out.println("Please input the question");
+				Logger.log(Logger.INFO, "IN_OTR","Requesting Secret question");
 				String question = JOptionPane.showInputDialog("Please input secret question");
+				Logger.log(Logger.INFO, "IN_OTR","Accepting Secret answer");
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.initiateSmp_q(question, str, callback);
 			}else if(str.startsWith("/is")){
+				Logger.log(Logger.INFO, "IN_OTR","initiating SMP");
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.initiateSmp(str, callback);
 			}else if(str.startsWith("/rs")){
+				Logger.log(Logger.INFO, "IN_OTR","Accepting Secret answer from buddy");
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.respondSmp(str, callback);
 			}else if(str.startsWith("/as")){
+				Logger.log(Logger.INFO, "IN_OTR","Aborting SMP");
 				conn.abortSmp(callback);
 			}else if(str.startsWith("/disc")){
+				Logger.log(Logger.INFO, "IN_OTR","Disconnecting encryption");
 				conn.disconnect(callback);
 			}
 			else{

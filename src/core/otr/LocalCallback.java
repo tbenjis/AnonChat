@@ -26,7 +26,7 @@ public class LocalCallback implements OTRCallbacks{
 	public void injectMessage(String accName, String prot, String rec, String msg){
 		if(msg==null)return;
 		//return a log of injected message
-		Logger.log(Logger.WARNING, this.getClass(), "Injecting message to the recipient:"
+		Logger.log(Logger.INFO, this.getClass(), "Injecting message to the recipient:"
 				+msg.length()+": "+msg);
 		
 		//get chat window
@@ -39,7 +39,7 @@ public class LocalCallback implements OTRCallbacks{
 	}
 
 	public void goneSecure(OTRContext context) {
-		System.out.println("\033[31mAKE succeeded\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"\033[31mAKE succeeded\033[0m");
 	}
 
 	public int isLoggedIn(String accountname, String protocol,
@@ -54,19 +54,19 @@ public class LocalCallback implements OTRCallbacks{
 	public void newFingerprint(OTRInterface us,
 			String accountname, String protocol, String username,
 			byte[] fingerprint) {
-		System.out.println("\033[31mNew fingerprint is created.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"\033[31mNew fingerprint is created.\033[0m");
 	}
 
 	public void stillSecure(OTRContext context, int is_reply) {
-		System.out.println("\033[31mStill secure.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"\033[31mStill secure.\033[0m");
 	}
 
 	public void updateContextList() {
-		System.out.println("\033[31mUpdating context list.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"\033[31mUpdating context list.\033[0m");
 	}
 
 	public void writeFingerprints() {
-		System.out.println("\033[31mWriting fingerprints.\033[0m");
+		Logger.log(Logger.INFO, this.getClass(),"\033[31mWriting fingerprints.\033[0m");
 	}
 
 	public String errorMessage(OTRContext context, int err_code) {
@@ -80,9 +80,9 @@ public class LocalCallback implements OTRCallbacks{
 	public void handleMsgEvent(int msg_event,
 			OTRContext context, String message) {
 		if(msg_event==OTRCallbacks.OTRL_MSGEVENT_CONNECTION_ENDED){
-			System.out.println("\033[31mThe private connection has already ended.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe private connection has already ended.\033[0m");
 		}else if(msg_event==OTRCallbacks.OTRL_MSGEVENT_RCVDMSG_NOT_IN_PRIVATE){
-			System.out.println("\033[31mWe received an encrypted message, but we are not in" +
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mWe received an encrypted message, but we are not in" +
 					"encryption state.\033[0m");
 		}
 	}
@@ -90,16 +90,16 @@ public class LocalCallback implements OTRCallbacks{
 	public void handleSmpEvent(int smpEvent,
 			OTRContext context, int progress_percent, String question) {
 		if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_SECRET){
-			System.out.println("\033[31mThe other side has initialized SMP." +
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe other side has initialized SMP." +
 					" Please respond with /rs.\033[0m");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_ANSWER){
-			System.out.println("\033[31mThe other side has initialized SMP, with question:" +
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mThe other side has initialized SMP, with question:" +
 					question + ", "+
 			" Please respond with /rs.\033[0m");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
-			System.out.println("\033[31mSMP succeeded.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mSMP succeeded.\033[0m");
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_FAILURE){
-			System.out.println("\033[31mSMP failed.\033[0m");
+			Logger.log(Logger.INFO, this.getClass(),"\033[31mSMP failed.\033[0m");
 		}
 		
 		
