@@ -252,6 +252,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		if (e.getKeyCode() == 10 & !shiftpress) { // enter key
 			if (!textArea4.getText().trim().equals("")) {
 				String msg = textArea4.getText();
+				//check if otr is enabled
 
 				boolean right = true;
 				if (msg.startsWith("/")) {
@@ -425,24 +426,24 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource() == this.mntmStartEncryptedChat){
-			//begin the encrypted chat process
-			// Generate the keys
-			OTRInterface alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
-			try {
-				OTRCallbacks callback = new LocalCallback(b);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
 			//findout if the client is fully connected
 			if (b.isFullyConnected())
 			{
+				//begin the encrypted chat process
+				// Generate the keys
+				OTRInterface alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());
+				try {
+					OTRCallbacks callback = new LocalCallback(b);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
 				//after the process is complete disable stop encrypted chat menu
 				this.mntmStartEncryptedChat.setEnabled(false);
 				this.mntmStopEncryptedChat.setEnabled(true);
-				//lets start encryption
-				list_of_commands.in_command(b, "/otr Requesting Encrypted Chat", this);
+				
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot initiate encryption. Please try again.");

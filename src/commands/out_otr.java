@@ -1,5 +1,7 @@
 package commands;
 
+import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
+import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import gui.GuiChatWindow;
 import util.ChatWindow;
 import core.Buddy;
@@ -10,7 +12,7 @@ import core.Buddy;
  */
 public class out_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w,
-			boolean with_delay) {
+			boolean with_delay, OTRInterface us, OTRCallbacks callback) {
 		String msg = " from you";
 		ChatWindow.update_window(6, w, s.substring(5)+msg, "", "", with_delay);
 	}

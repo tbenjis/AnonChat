@@ -1,5 +1,7 @@
 package commands;
 
+import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
+import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import gui.GuiChatWindow;
 import util.ChatWindow;
 import core.Buddy;
@@ -9,8 +11,7 @@ import core.Buddy;
  *
  */
 public class in_otr {
-	public static void command(Buddy buddy, String s, GuiChatWindow w) {
-		String msg = " from "+buddy.toString();
-		ChatWindow.update_window(5, w, s.substring(5)+msg, "", s, !buddy.isFullyConnected());
+	public static void command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback) {
+		ChatWindow.update_window(5, w, s.substring(5), "", s, !buddy.isFullyConnected());
 	}
 }

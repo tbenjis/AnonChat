@@ -1,5 +1,7 @@
 package commands;
 
+import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
+import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import gui.GuiChatWindow;
 import core.Buddy;
 
@@ -22,8 +24,16 @@ public class list_of_commands {
 			in_me.command(buddy, s, w);
 			return false;
 		} 
+		
+		return true;
+	}
+	
+	//for otr
+	public static boolean in_command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback) {
+		String command = s.split(" ")[0];
+	
 		if (command.equals("/otr")) {
-			in_otr.command(buddy, s, w);
+			in_otr.command(buddy, s, w, us, callback);
 			return false;
 		}
 		return true;
@@ -36,9 +46,20 @@ public class list_of_commands {
 			out_me.command(buddy, s, w, with_delay);
 			return false;
 		}
-		/** Use this to detect an OTR message comming in **/
+		
+		// When the command is not exist then it cannot be Anonchat because you
+		// can not send commands yourself
+		return true;
+	}
+	
+	//for otr
+	public static boolean out_command(Buddy buddy, String s, GuiChatWindow w,
+			boolean with_delay, OTRInterface us, OTRCallbacks callback ) {
+		String command = s.split(" ")[0];
+		
+		/** Use this to detect an OTR message coming in **/
 		if (command.equals("/otr")) {
-			out_otr.command(buddy, s, w, with_delay);
+			out_otr.command(buddy, s, w, with_delay, us, callback);
 			return false;
 		}
 		

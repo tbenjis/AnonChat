@@ -31,7 +31,7 @@ public class LocalCallback implements OTRCallbacks{
 		
 		//get chat window
 		GuiChatWindow w = Gui.getChatWindow(bud, true, true);		
-		list_of_commands.in_command(bud, "/otr "+msg, w);
+		list_of_commands.in_command(bud, msg, w);
 	}
 
 	public int getOtrPolicy(OTRContext conn) {
