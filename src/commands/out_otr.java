@@ -16,8 +16,8 @@ import core.Logger;
 public class out_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w,
 			boolean with_delay, OTRInterface us, OTRCallbacks callback) {
-		
-				
+		//remove the otr tag
+		s = s.substring(5);
 		Logger.log(Logger.INFO, "OUT_OTR","From network:"+s.length()+": "+s);
 		StringTLV stlv;
 		try {

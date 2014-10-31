@@ -2,13 +2,10 @@ package commands;
 
 import javax.swing.JOptionPane;
 
-import ca.uwaterloo.crysp.otr.TLV;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
 import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
-import ca.uwaterloo.crysp.otr.iface.OTRTLV;
 import ca.uwaterloo.crysp.otr.iface.Policy;
-import gui.Gui;
 import gui.GuiChatWindow;
 import util.ChatWindow;
 import core.Buddy;
@@ -23,7 +20,7 @@ public class in_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback, OTRContext conn) {
 				
 		//get the next 5 string
-		String str = s;
+		String str = s.substring(5);
 		Logger.log(Logger.INFO, "IN_OTR", Config.us+" "+buddy.getClient()+" "+buddy.getAddress());
 		try {
 			
@@ -56,6 +53,10 @@ public class in_otr {
 						str, null, Policy.FRAGMENT_SEND_ALL, callback);
 				if (str == null){
 					Logger.log(Logger.SEVERE, "IN_OTR","Failure Encrypting message");
+					
+				}else{
+					// show message encryption error
+					JOptionPane.showMessageDialog(null, "Message not encrypted, an error occured");
 				}
 				//Logger.log(Logger.INFO, "IN_OTR",result);
 				/*if(str.length()!=0){
@@ -66,6 +67,7 @@ public class in_otr {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChatWindow.update_window(5, w, str, "", str, !buddy.isFullyConnected());
+		//add otr tag
+		ChatWindow.update_window(5, w, str, "", "/otr "+str, !buddy.isFullyConnected());
 	}
 }
