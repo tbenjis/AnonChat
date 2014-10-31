@@ -20,11 +20,30 @@ public class out_otr {
 		s = s.substring(5);
 		Logger.log(Logger.INFO, "OUT_OTR","From network:"+s.length()+": "+s);
 		StringTLV stlv;
+		//enable otr
+		if(!w.isOTREnabled())
+		{
+			w.setOTRon();
+			//set partial enabled
+			w.setPartialEncryption();
+			//generate keys for otr
+			w.generateOTRkeys();
+		}
 		try {
 			stlv = us.messageReceiving(Config.us, buddy.getClient(), buddy.getAddress(), s, callback);
 			if(stlv!=null){
 				s=stlv.msg;
 				Logger.log(Logger.INFO, "OUT_OTR","From OTR:"+s.length()+": "+s);
+				//message is encrypted you can enable the menus
+				if(!w.isOTREnabled())
+				{
+					w.setOTRon();
+					//set encryption enabled
+					w.setFullEncryption();
+				}
+			}else{
+				//received unencrypted message, message wasnt encrypted
+				w.setPartialEncryption();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

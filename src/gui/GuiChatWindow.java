@@ -438,17 +438,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			if (b.isFullyConnected())
 			{
 				//begin the encrypted chat process
-				// Generate the keys
-				 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
-				 callback = new LocalCallback(b);
-				 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
+				generateOTRkeys();
 				 //set otr encryption enabled
-				 OTR_ENABLED = true;
-				
-				//after the process is complete disable stop encrypted chat menu
-				this.mntmStartEncryptedChat.setEnabled(false);
-				this.mntmStopEncryptedChat.setEnabled(true);
-				
+				 setOTRon();
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot initiate encryption. Please try again.");
@@ -461,13 +453,10 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			//findout if the client is fully connected
 			if (b.isFullyConnected())
 			{
-				this.mntmStopEncryptedChat.setEnabled(false);
-				
 				//after the process is complete disable start encrypted chat menu
-				this.mntmStartEncryptedChat.setEnabled(true);
-				
+				//set otr off
+				setOTRoff();
 				list_of_commands.in_command(b, "/disc", this);
-				OTR_ENABLED = false;
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
@@ -476,17 +465,88 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		}
 		
 	}
-	//get us and callback
+	/**
+	 * get us and callback
+	 * @return
+	 */
 	public OTRInterface getUs()
 	{
 		return this.alice;
 	}
+	/**
+	 * get otr callback
+	 * @return
+	 */
 	public  OTRCallbacks getOTRCall()
 	{
 		return this.callback;
 	}
+	/**
+	 * get otr context
+	 * @return
+	 */
 	public  OTRContext getOTRContext()
 	{
 		return this.conn;
+	}
+	/**
+	 * set otr encryption on
+	 */
+	public void setOTRon()
+	{
+		//after the process is complete disable stop encrypted chat menu
+		this.mntmStartEncryptedChat.setEnabled(false);
+		this.mntmStopEncryptedChat.setEnabled(true);
+		
+		this.OTR_ENABLED = true;
+		lblNotEncrypted.setText("Encryption Enabled (Unconfirmed)");
+		lblNotEncrypted.setForeground(Color.ORANGE);
+	}
+	/**
+	 * set otr encryption off
+	 */
+	public void setOTRoff()
+	{
+		//change menu
+		this.mntmStopEncryptedChat.setEnabled(false);
+		this.mntmStartEncryptedChat.setEnabled(true);
+		
+		this.OTR_ENABLED = false;
+		lblNotEncrypted.setText("Not Encrypted");
+		lblNotEncrypted.setForeground(Color.RED);
+	}
+	/**
+	 * check if otr is enabled
+	 * @return
+	 */
+	public boolean isOTREnabled()
+	{
+		return this.OTR_ENABLED;		
+	}
+	/**
+	 * set label showing full encryption is enabled
+	 */
+	public void setFullEncryption()
+	{
+		lblNotEncrypted.setText("Encryption Enabled!");
+		lblNotEncrypted.setForeground(Color.GREEN);
+	}
+
+	/**
+	 * set label showing otr is on but encryption isnt enabled
+	 */
+	public void setPartialEncryption() {
+		lblNotEncrypted.setText("Encryption Enabled (Unconfirmed)");
+		lblNotEncrypted.setForeground(Color.ORANGE);
+	}
+	/**
+	 * generate otr keys and setup callbacks
+	 */
+	public void generateOTRkeys()
+	{
+		// Generate the keys
+		 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
+		 callback = new LocalCallback(b);
+		 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
 	}
 }

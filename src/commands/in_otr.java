@@ -53,10 +53,14 @@ public class in_otr {
 						str, null, Policy.FRAGMENT_SEND_ALL, callback);
 				if (str == null){
 					Logger.log(Logger.SEVERE, "IN_OTR","Failure Encrypting message");
-					
-				}else{
 					// show message encryption error
 					JOptionPane.showMessageDialog(null, "Message not encrypted, an error occured");
+					//set partial encryption
+					w.setPartialEncryption();
+					
+				}else{
+					//show encrypted
+					w.setFullEncryption();
 				}
 				//Logger.log(Logger.INFO, "IN_OTR",result);
 				/*if(str.length()!=0){
