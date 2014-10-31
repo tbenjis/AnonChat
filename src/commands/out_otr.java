@@ -8,6 +8,7 @@ import util.ChatWindow;
 import core.Buddy;
 import core.Config;
 import core.Logger;
+import core.otr.ReceivingThread;
 /**
  * Display a messeng that was sent by a contact
  * @author tbenjis
@@ -19,7 +20,7 @@ public class out_otr {
 		//remove the otr tag
 		s = s.substring(5);
 		Logger.log(Logger.INFO, "OUT_OTR","From network:"+s.length()+": "+s);
-		StringTLV stlv;
+		
 		//enable otr
 		if(!w.isOTREnabled())
 		{
@@ -28,28 +29,11 @@ public class out_otr {
 			w.setPartialEncryption();
 			//generate keys for otr
 			w.generateOTRkeys();
-		}
-		try {
-			stlv = us.messageReceiving(Config.us, buddy.getClient(), buddy.getAddress(), s, callback);
-			if(stlv!=null){
-				s=stlv.msg;
-				Logger.log(Logger.INFO, "OUT_OTR","From OTR:"+s.length()+": "+s);
-				//message is encrypted you can enable the menus
-				if(!w.isOTREnabled())
-				{
-					w.setOTRon();
-					//set encryption enabled
-					w.setFullEncryption();
-				}
-			}else{
-				//received unencrypted message, message wasnt encrypted
-				w.setPartialEncryption();
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//start the receive thread
+			new ReceivingThread(buddy, s, w, us, callback).start();	
 		}
 		
-		ChatWindow.update_window(6, w, s, "", "", with_delay);
+		
+		
 	}
 }

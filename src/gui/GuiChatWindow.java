@@ -499,8 +499,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.mntmStopEncryptedChat.setEnabled(true);
 		
 		this.OTR_ENABLED = true;
-		lblNotEncrypted.setText("Encryption Enabled (Unconfirmed)");
-		lblNotEncrypted.setForeground(Color.ORANGE);
+		lblNotEncrypted.setText("Encryption (Unconfirmed)");
+		lblNotEncrypted.setForeground(Color.MAGENTA);
 	}
 	/**
 	 * set otr encryption off
@@ -536,8 +536,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	 * set label showing otr is on but encryption isnt enabled
 	 */
 	public void setPartialEncryption() {
-		lblNotEncrypted.setText("Encryption Enabled (Unconfirmed)");
-		lblNotEncrypted.setForeground(Color.ORANGE);
+		lblNotEncrypted.setText("Encryption (Unconfirmed)");
+		lblNotEncrypted.setForeground(Color.MAGENTA);
 	}
 	/**
 	 * generate otr keys and setup callbacks

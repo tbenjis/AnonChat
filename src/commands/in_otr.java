@@ -11,6 +11,7 @@ import util.ChatWindow;
 import core.Buddy;
 import core.Config;
 import core.Logger;
+import core.otr.ReceivingThread;
 /**
  * Display a messing that we send
  * @author tbenjis
@@ -21,7 +22,9 @@ public class in_otr {
 				
 		//get the next 5 string
 		String str = s.substring(5);
-		Logger.log(Logger.INFO, "IN_OTR", Config.us+" "+buddy.getClient()+" "+buddy.getAddress());
+		new ReceivingThread(buddy, str, w, us, callback).start();	
+						
+		Logger.log(Logger.INFO, "IN_OTR", "String is: "+str+" "+Config.us+" "+buddy.getClient()+" "+buddy.getAddress());
 		try {
 			
 			if(str.startsWith("/isq")){
@@ -54,24 +57,23 @@ public class in_otr {
 				if (str == null){
 					Logger.log(Logger.SEVERE, "IN_OTR","Failure Encrypting message");
 					// show message encryption error
-					JOptionPane.showMessageDialog(null, "Message not encrypted, an error occured");
+					//JOptionPane.showMessageDialog(null, "Message not encrypted, an error occured");
 					//set partial encryption
-					w.setPartialEncryption();
+					w.setPartialEncryption();					
 					
 				}else{
 					//show encrypted
 					w.setFullEncryption();
-				}
-				//Logger.log(Logger.INFO, "IN_OTR",result);
-				/*if(str.length()!=0){
+					//add otr tag send encrypted message else donot send any
 					Logger.log(Logger.INFO, "IN_OTR","To network:"+str.length()+":"+str+"");
-					//conn.fragmentAndSend(str,  callback);
-				}*/
+					
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//add otr tag
-		ChatWindow.update_window(5, w, str, "", "/otr "+str, !buddy.isFullyConnected());
+		ChatWindow.update_window(5, w,str, "", "/otr "+str, !buddy.isFullyConnected());
+		
 	}
 }

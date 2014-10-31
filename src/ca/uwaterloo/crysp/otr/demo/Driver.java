@@ -48,7 +48,7 @@ public class Driver {
 		if(args[0].equals("alice")){
 			
 			// building the connection
-			ServerSocket server=new ServerSocket(899);
+			ServerSocket server=new ServerSocket(890);
 			Socket client = server.accept();
 			BufferedReader in=new BufferedReader(new InputStreamReader(client.getInputStream()));
 			BufferedReader in2=new BufferedReader(new InputStreamReader(System.in));
@@ -59,14 +59,14 @@ public class Driver {
 			OTRCallbacks callback = new LocalCallback(client);
 			
 			// Send and receive the message repeatedly
-			new SendingThread(in2, alice, "alice.msn.com", "Anon 1.0.0", "bob@msn.com", callback).start();
-			new ReceivingThread(in, alice, "alice.msn.com", "Anon 1.0.0", "bob@msn.com",callback).start();
+			new SendingThread(in2, alice, "11111111111", "Anon 1.0.0", "2222222", callback).start();
+			new ReceivingThread(in, alice, "11111111111", "Anon 1.0.0", "2222222",callback).start();
 			
 		}else if(args[0].equals("bob")){
 			// building the connection
 			Socket client=new Socket(
 					InetAddress.getLocalHost(),
-					899);
+					890);
 			BufferedReader in=new BufferedReader(new InputStreamReader(client.getInputStream()));
 			BufferedReader in2=new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("\033[31mConnected to Alice\033[0m");
@@ -76,8 +76,8 @@ public class Driver {
 			OTRCallbacks callback = new LocalCallback(client);
 	
 			// Send and receive the message repeatedly
-			new SendingThread(in2, bob, "bob.msn.com", "Anon 1.0.0", "alice@msn.com", callback).start();
-			new ReceivingThread(in, bob, "bob.msn.com", "Anon 1.0.0", "alice@msn.com", callback).start();
+			new SendingThread(in2, bob, "2222222", "Anon 1.0.0", "11111111111", callback).start();
+			new ReceivingThread(in, bob, "2222222", "Anon 1.0.0", "11111111111", callback).start();
 			
 		}else{
 			System.out.println("Please enter \"alice\" or \"bob\" as the argument");
