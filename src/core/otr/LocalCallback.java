@@ -1,9 +1,10 @@
 package core.otr;
 
+import java.io.IOException;
+
 import util.ChatWindow;
 import gui.Gui;
 import gui.GuiChatWindow;
-import commands.list_of_commands;
 import core.Buddy;
 import core.Logger;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
@@ -23,12 +24,17 @@ public class LocalCallback implements OTRCallbacks{
 		if(msg==null)return;
 		//return a log of injected message
 		Logger.log(Logger.INFO, this.getClass(), "Injecting message to the recipient:"
-				+msg.length()+": "+msg);
+				+msg.length()+": "+msg.toString());
 		
 		//get chat window
 		GuiChatWindow w = Gui.getChatWindow(bud, true, true);	
 		//add otr to the message
-		ChatWindow.update_window(5, w, msg, "", msg, !bud.isFullyConnected());
+		try {
+			bud.sendRaw("message "+msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public int getOtrPolicy(OTRContext conn) {

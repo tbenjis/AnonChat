@@ -41,6 +41,8 @@ public class out_otr {
 					//set encryption enabled
 					w.setFullEncryption();
 				}
+				//set full encryption
+				w.setFullEncryption();
 			}else{
 				//received unencrypted message, message wasnt encrypted
 				w.setPartialEncryption();
@@ -50,6 +52,6 @@ public class out_otr {
 			e.printStackTrace();
 		}
 		
-		ChatWindow.update_window(6, w, rec, "", "", with_delay);
+		ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);
 	}
 }

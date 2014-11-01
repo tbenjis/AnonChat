@@ -48,7 +48,7 @@ public class Driver {
 		if(args[0].equals("alice")){
 			
 			// building the connection
-			ServerSocket server=new ServerSocket(890);
+			ServerSocket server=new ServerSocket(8940);
 			Socket client = server.accept();
 			BufferedReader in=new BufferedReader(new InputStreamReader(client.getInputStream()));
 			BufferedReader in2=new BufferedReader(new InputStreamReader(System.in));
@@ -66,7 +66,7 @@ public class Driver {
 			// building the connection
 			Socket client=new Socket(
 					InetAddress.getLocalHost(),
-					890);
+					8940);
 			BufferedReader in=new BufferedReader(new InputStreamReader(client.getInputStream()));
 			BufferedReader in2=new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("\033[31mConnected to Alice\033[0m");

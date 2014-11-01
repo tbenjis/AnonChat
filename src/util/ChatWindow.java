@@ -85,8 +85,11 @@ public class ChatWindow {
 		w.get_textArea4().requestFocusInWindow();
 
 		if (send != "") {
-
+			
+			if (type != 5)
+			{
 			send = send.trim().replaceAll("\n", "\\\\n").replaceAll("\r", "");
+			}
 
 			try {
 				if (!add_delay) {

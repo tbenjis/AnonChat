@@ -2,6 +2,7 @@ package commands;
 
 import javax.swing.JOptionPane;
 
+import util.ChatWindow;
 import ca.uwaterloo.crysp.otr.TLV;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
 import ca.uwaterloo.crysp.otr.iface.OTRContext;
@@ -65,14 +66,15 @@ public class in_otr {
 					w.setFullEncryption();
 					//add otr tag send encrypted message else donot send any
 					Logger.log(Logger.INFO, "IN_OTR","To network:"+str.length()+":"+str+"");
-					
 				}
 				
+				ChatWindow.update_window(5, w,s.substring(5), "","", !buddy.isFullyConnected());
 			}
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//ChatWindow.update_window(5, w,"", "", "/otr "+str, !buddy.isFullyConnected());
+		
 		
 	}
 }

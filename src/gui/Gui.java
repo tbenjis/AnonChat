@@ -758,7 +758,19 @@ public class Gui {
 		@Override
 		public void onMessage(Buddy buddy, String s) {
 			GuiChatWindow w = getChatWindow(buddy, true, true);
-			String msg = s.trim().replaceAll("\\\\n", "\n").replaceAll("\r", "");
+			String msg;
+			//check if otr is on
+			if(s.startsWith("/otr") || s.startsWith("?OTR"))
+			{
+				if(!w.isOTREnabled()){
+					//enable otr
+					w.setOTRon();
+					w.generateOTRkeys();
+				}
+				msg = s;
+			}else{
+				msg = s.trim().replaceAll("\\\\n", "\n").replaceAll("\r", "");
+			}
 					
 			boolean right = true;
 			if (msg.startsWith("/") || msg.startsWith("?OTR")) 
