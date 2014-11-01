@@ -194,15 +194,16 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		
 		mntmAuthenticateContactmitm = new JMenuItem("Authenticate Contact (MITM)");
 		mnEncryptedChat.add(mntmAuthenticateContactmitm);
+		mntmAuthenticateContactmitm.addActionListener(this);
 		
 		//disable stop encryption menu during initialization
 		this.mntmStopEncryptedChat.setEnabled(false);
 		this.mntmAuthenticateContactmitm.setEnabled(false);
 		
-		mnShowFingerprint = new JMenu("Show Fingerprint");
+		mnShowFingerprint = new JMenuItem("Show Fingerprint");
 		menuBar.add(mnShowFingerprint);
 		mnShowFingerprint.addActionListener(this);
-		mntmAuthenticateContactmitm.addActionListener(this);
+		
 		
 		addWindowFocusListener(new WindowAdapter() {
 
@@ -401,7 +402,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private OTRCallbacks callback;
 	private boolean OTR_ENABLED = false;
 	private OTRContext conn;
-	private JMenu mnShowFingerprint;
+	private JMenuItem mnShowFingerprint;
 	private String fingerprint_= null;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
@@ -463,7 +464,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				//after the process is complete disable start encrypted chat menu
 				//set otr off
 				setOTRoff();
-				list_of_commands.in_command(b, "/disc", this);
+				list_of_commands.in_command(b, "/otr /disc", this);
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
@@ -472,7 +473,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		}
 		if(e.getSource() == this.mntmAuthenticateContactmitm){
 			//initiate SMP
-			list_of_commands.in_command(b, "/isq", this);
+			list_of_commands.in_command(b, "/otr /isq", this);
 		}
 		/**
 		 * Show fingerprint to user to compare
@@ -589,8 +590,6 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	}
 	/**
 	 * Set the fingerprint
-	 * 
-	 *
 	 */
 	public void setFingerprint(String f)
 	{

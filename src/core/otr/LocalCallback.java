@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import util.ChatWindow;
+import util.Util;
 import gui.Gui;
 import gui.GuiChatWindow;
 import core.Buddy;
@@ -68,11 +69,11 @@ public class LocalCallback implements OTRCallbacks{
 			String accountname, String protocol, String username,
 			byte[] fingerprint) {
 		
-		Logger.log(Logger.INFO, this.getClass(),"New fingerprint is created."+fingerprint.toString());
+		Logger.log(Logger.INFO, this.getClass(),"New fingerprint is created."+Util.bytesToHex(fingerprint));
 		
 		w.setStatusText("New fingerprint is created: ",1);
 		// show encrypted
-		w.setFingerprint(fingerprint.toString());
+		w.setFingerprint(Util.bytesToHex(fingerprint));
 		w.setFullEncryption();
 	}
 
@@ -126,7 +127,7 @@ public class LocalCallback implements OTRCallbacks{
 			
 			str = JOptionPane.showInputDialog("The other side has initialized SMP. Enter the secret");
 			try {
-				bud.sendRaw("message /rs "+str);
+				bud.sendRaw("message /otr /rs "+str);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -138,7 +139,7 @@ public class LocalCallback implements OTRCallbacks{
 			" Please respond with /rs.");
 			str = JOptionPane.showInputDialog("The other side has initialized SMP. Enter the secret");
 			try {
-				bud.sendRaw("message /rs "+str);
+				bud.sendRaw("message /otr /rs "+str);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
