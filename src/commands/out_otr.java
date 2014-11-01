@@ -5,6 +5,7 @@ import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import ca.uwaterloo.crysp.otr.iface.StringTLV;
 import gui.GuiChatWindow;
 import util.ChatWindow;
+import util.Util;
 import core.Buddy;
 import core.Config;
 import core.Logger;
@@ -14,6 +15,8 @@ import core.Logger;
  *
  */
 public class out_otr {
+	private static String[] newrec;
+
 	public static void command(Buddy buddy, String s, GuiChatWindow w,
 			boolean with_delay, OTRInterface us, OTRCallbacks callback) {
 		//remove the otr tag
@@ -40,12 +43,23 @@ public class out_otr {
 					w.setOTRon();
 				}
 			}
-			//check if we received a message
-			if(rec.startsWith("/otr"))
-			ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		//check if we received a fingerprint message
+		if(rec.contains("~"))
+		{	
+			newrec =rec.split("~");			
+			w.setBuddyFingerprint(newrec[0]);
+			//check if we received a message
+			if(newrec[1].startsWith("/otr"))
+			{
+				ChatWindow.update_window(6, w, newrec[1].substring(5), "", "", with_delay);			
+			}
 		}
 		
 	}

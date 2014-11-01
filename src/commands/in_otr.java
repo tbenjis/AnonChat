@@ -26,6 +26,10 @@ public class in_otr {
 
 		// get the next 5 string
 		String str = s.substring(5);
+		String chatString = s;
+		if(w.getFingerprint()!=null){
+			s = w.getFingerprint()+"~"+s;
+		}
 
 		//Logger.log(Logger.INFO, "IN_OTR", "String is: " + str + " " + Config.us
 		//		+ " " + buddy.getClient() + " " + buddy.getAddress());
@@ -52,6 +56,7 @@ public class in_otr {
 			} else if (str.startsWith("/disc")) {
 				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption");
 				conn.disconnect(callback);
+				conn.abortSmp(callback);
 			} else {
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Converting to OTR:" + str.length() + ":" + str);
@@ -74,7 +79,7 @@ public class in_otr {
 			e.printStackTrace();
 		}
 
-		ChatWindow.update_window(5, w, s.substring(5), "", "",
+		ChatWindow.update_window(5, w, chatString.substring(5), "", "",
 				!buddy.isFullyConnected());
 	}
 }

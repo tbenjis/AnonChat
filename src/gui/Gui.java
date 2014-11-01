@@ -820,6 +820,9 @@ public class Gui {
 				jt.expandRow(0);
 			}
 		}
+
+
+	
 	}
 
 	public JMenu getFileMenu() {

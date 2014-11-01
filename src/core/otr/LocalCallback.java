@@ -142,6 +142,7 @@ public class LocalCallback implements OTRCallbacks{
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
 			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded.");
 			w.setStatusText("Encrypted (SMP succeeded)",3);
+			w.setMITMoff();
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_FAILURE){
 			Logger.log(Logger.INFO, this.getClass(),"SMP failed.");
 			w.setStatusText("SMP failed.",2);

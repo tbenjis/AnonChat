@@ -83,6 +83,7 @@ public class BuddyIncoming {
 	{
 		APIManager.fireMessage(b, in.split(" ", 2)[1]);
 	}
+	
 	private static void in_not_implemented(String in, Buddy b)
 	{
 		Logger.log(Logger.NOTICE, b, "Recieved " + in.trim() + " from " + b.address);

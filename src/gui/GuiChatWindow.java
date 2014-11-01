@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -404,6 +405,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private OTRContext conn;
 	private JMenuItem mnShowFingerprint;
 	private String fingerprint_= null;
+	private String buddyfingerprint_ = null;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
@@ -485,7 +487,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			{
 				JOptionPane.showMessageDialog(null, "No fingerprint Generated");
 			}else{
-				JOptionPane.showMessageDialog(null, fingerprint_);
+				JOptionPane.showMessageDialog(null, "You: "+fingerprint_+"\n"+b.toString()+": "+this.buddyfingerprint_);
 			}
 		}
 		
@@ -527,6 +529,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.OTR_ENABLED = true;
 		lblNotEncrypted.setText("Encryption (Unconfirmed)");
 		lblNotEncrypted.setForeground(Color.MAGENTA);
+		list_of_commands.in_command(b, "/otr initiating OTR Encryption", this);
+		
 	}
 	/**
 	 * set otr encryption off
@@ -576,6 +580,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
 		 callback = new LocalCallback(b);
 		 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
+		
 	}
 	
 	public void setStatusText(String txt, int good)
@@ -594,5 +599,19 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	public void setFingerprint(String f)
 	{
 		this.fingerprint_ = f;
+		list_of_commands.in_command(b, f+"~/otr Setting up fingerprint", this);
+	}
+	public String getFingerprint()
+	{
+		return this.fingerprint_;
+	}
+	
+	public void setMITMoff()
+	{
+		this.mntmAuthenticateContactmitm.setEnabled(false);
+	}
+
+	public void setBuddyFingerprint(String rec) {
+		this.buddyfingerprint_ = rec;
 	}
 }

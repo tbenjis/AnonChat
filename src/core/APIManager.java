@@ -76,7 +76,7 @@ public class APIManager {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void fireBuddyRemoved(Buddy buddy) {
 		try {
 			Logger.log(Logger.DEBUG, "API", "Buddy removed: " + buddy.getAddress());
