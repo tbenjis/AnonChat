@@ -28,7 +28,7 @@ public class LocalCallback implements OTRCallbacks{
 		//get chat window
 		GuiChatWindow w = Gui.getChatWindow(bud, true, true);	
 		//add otr to the message
-		ChatWindow.update_window(5, w, "", "", "/otr "+msg, !bud.isFullyConnected());
+		ChatWindow.update_window(5, w, msg, "", msg, !bud.isFullyConnected());
 	}
 
 	public int getOtrPolicy(OTRContext conn) {

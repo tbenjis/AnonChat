@@ -2,16 +2,16 @@ package commands;
 
 import javax.swing.JOptionPane;
 
+import ca.uwaterloo.crysp.otr.TLV;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
 import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
+import ca.uwaterloo.crysp.otr.iface.OTRTLV;
 import ca.uwaterloo.crysp.otr.iface.Policy;
 import gui.GuiChatWindow;
-import util.ChatWindow;
 import core.Buddy;
 import core.Config;
 import core.Logger;
-import core.otr.ReceivingThread;
 /**
  * Display a messing that we send
  * @author tbenjis
@@ -21,8 +21,7 @@ public class in_otr {
 	public static void command(Buddy buddy, String s, GuiChatWindow w, OTRInterface us, OTRCallbacks callback, OTRContext conn) {
 				
 		//get the next 5 string
-		String str = s.substring(5);
-		new ReceivingThread(buddy, str, w, us, callback).start();	
+		String str = s;
 						
 		Logger.log(Logger.INFO, "IN_OTR", "String is: "+str+" "+Config.us+" "+buddy.getClient()+" "+buddy.getAddress());
 		try {
@@ -73,7 +72,7 @@ public class in_otr {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ChatWindow.update_window(5, w,str, "", "/otr "+str, !buddy.isFullyConnected());
+		//ChatWindow.update_window(5, w,"", "", "/otr "+str, !buddy.isFullyConnected());
 		
 	}
 }

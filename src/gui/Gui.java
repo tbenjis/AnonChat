@@ -761,7 +761,7 @@ public class Gui {
 			String msg = s.trim().replaceAll("\\\\n", "\n").replaceAll("\r", "");
 					
 			boolean right = true;
-			if (msg.startsWith("/")) 
+			if (msg.startsWith("/") || msg.startsWith("?OTR")) 
 			{
 			right=list_of_commands.out_command(buddy, msg,w,false);
 			} 
