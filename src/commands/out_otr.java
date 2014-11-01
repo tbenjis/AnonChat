@@ -41,9 +41,6 @@ public class out_otr {
 				}
 				//set full encryption
 				w.setFullEncryption();
-			}else{
-				//received unencrypted message, message wasnt encrypted
-				w.setPartialEncryption();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
