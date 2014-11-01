@@ -199,6 +199,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.mntmStopEncryptedChat.setEnabled(false);
 		this.mntmAuthenticateContactmitm.setEnabled(false);
 		
+		mnShowFingerprint = new JMenu("Show Fingerprint");
+		menuBar.add(mnShowFingerprint);
+		mnShowFingerprint.addActionListener(this);
+		mntmAuthenticateContactmitm.addActionListener(this);
+		
 		addWindowFocusListener(new WindowAdapter() {
 
 			@Override
@@ -396,6 +401,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	private OTRCallbacks callback;
 	private boolean OTR_ENABLED = false;
 	private OTRContext conn;
+	private JMenu mnShowFingerprint;
+	private String fingerprint_= null;
 
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 
@@ -463,6 +470,23 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 
 			}
 		}
+		if(e.getSource() == this.mntmAuthenticateContactmitm){
+			//initiate SMP
+			list_of_commands.in_command(b, "/isq", this);
+		}
+		/**
+		 * Show fingerprint to user to compare
+		 */
+		if(e.getSource() == this.mnShowFingerprint){
+			//show the fingerprint
+			
+			if (fingerprint_ == null)
+			{
+				JOptionPane.showMessageDialog(null, "No fingerprint Generated");
+			}else{
+				JOptionPane.showMessageDialog(null, fingerprint_);
+			}
+		}
 		
 	}
 	/**
@@ -497,6 +521,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		//after the process is complete disable stop encrypted chat menu
 		this.mntmStartEncryptedChat.setEnabled(false);
 		this.mntmStopEncryptedChat.setEnabled(true);
+		this.mntmAuthenticateContactmitm.setEnabled(true);
 		
 		this.OTR_ENABLED = true;
 		lblNotEncrypted.setText("Encryption (Unconfirmed)");
@@ -510,10 +535,12 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		//change menu
 		this.mntmStopEncryptedChat.setEnabled(false);
 		this.mntmStartEncryptedChat.setEnabled(true);
+		this.mntmAuthenticateContactmitm.setEnabled(false);
 		
 		this.OTR_ENABLED = false;
 		lblNotEncrypted.setText("Not Encrypted");
 		lblNotEncrypted.setForeground(Color.RED);
+		this.fingerprint_ = null;
 	}
 	/**
 	 * check if otr is enabled
@@ -548,5 +575,25 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
 		 callback = new LocalCallback(b);
 		 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
+	}
+	
+	public void setStatusText(String txt, int good)
+	{
+		lblNotEncrypted.setText(txt);
+		if(good==1)
+		lblNotEncrypted.setForeground(Color.BLUE);
+		else if(good==2)
+			lblNotEncrypted.setForeground(Color.MAGENTA);
+		else
+			lblNotEncrypted.setForeground(Color.GREEN);
+	}
+	/**
+	 * Set the fingerprint
+	 * 
+	 *
+	 */
+	public void setFingerprint(String f)
+	{
+		this.fingerprint_ = f;
 	}
 }

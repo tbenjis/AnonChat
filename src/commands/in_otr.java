@@ -25,10 +25,10 @@ public class in_otr {
 			OTRInterface us, OTRCallbacks callback, OTRContext conn) {
 
 		// get the next 5 string
-		String str = s;
+		String str = s.substring(5);
 
-		Logger.log(Logger.INFO, "IN_OTR", "String is: " + str + " " + Config.us
-				+ " " + buddy.getClient() + " " + buddy.getAddress());
+		//Logger.log(Logger.INFO, "IN_OTR", "String is: " + str + " " + Config.us
+		//		+ " " + buddy.getClient() + " " + buddy.getAddress());
 		try {
 
 			if (str.startsWith("/isq")) {
@@ -58,27 +58,24 @@ public class in_otr {
 						"Converting to OTR:" + str.length() + ":" + str);
 				try {
 					str = us.messageSending(Config.us, buddy.getClient(),
-							buddy.getAddress(), str, null,
+							buddy.getAddress(), s, null,
 							Policy.FRAGMENT_SEND_ALL, callback);
 					
-						// show encrypted
-						w.setFullEncryption();
 						Logger.log(Logger.INFO, "IN_OTR",
 								"To network:" + str.length() + ":" + str + "");
 				} catch (Exception e) {
 					Logger.log(Logger.SEVERE, "IN_OTR",
-							"Failure Encrypting message");
-					w.setPartialEncryption();
-					return;
+							"Null received, maybe OTR control message");
+					//w.setPartialEncryption();
 				}
-
-				ChatWindow.update_window(5, w, s.substring(5), "", "",
-						!buddy.isFullyConnected());
+				
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		ChatWindow.update_window(5, w, s.substring(5), "", "",
+				!buddy.isFullyConnected());
 	}
 }

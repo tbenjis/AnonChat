@@ -39,14 +39,14 @@ public class out_otr {
 				{
 					w.setOTRon();
 				}
-				//set full encryption
-				w.setFullEncryption();
 			}
+			//check if we received a message
+			if(rec.startsWith("/otr"))
+			ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);
 	}
 }

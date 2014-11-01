@@ -30,8 +30,9 @@ public class ChatWindow {
 			delay = "[Delayed] ";
 		}
 
-		// Not in use but useful
+		// Not in use but useful for otr
 		if (type == 0) {
+			w.addUrlText("Plain", new_entry + "\n");
 		}
 		// Send or receive a normal Message
 		else if (type == 1) {
@@ -61,12 +62,12 @@ public class ChatWindow {
 		// Send or receive OTR request
 		else if (type == 5) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
-			w.append("Me", delay + "Me <<OTR>> ");
+			w.append("Me", delay + "Me [E]: ");
 			w.addUrlText("Me", new_entry.trim() + "\n");
 		//incomming OTR message
 		} else if (type == 6) {
 			w.append("Time Stamp", "(" + GuiChatWindow.getTime() + ") ");
-			w.append("Them", delay + "* " +  w.b.toString()+" <<OTR>> ");
+			w.append("Them", delay + "* " +  w.b.toString()+" [E]: ");
 			w.addUrlText("Them", new_entry + "\n");
 		}
 		// Private
