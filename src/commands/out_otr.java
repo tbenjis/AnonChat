@@ -38,8 +38,6 @@ public class out_otr {
 				if(!w.isOTREnabled())
 				{
 					w.setOTRon();
-					//set encryption enabled
-					w.setFullEncryption();
 				}
 				//set full encryption
 				w.setFullEncryption();
