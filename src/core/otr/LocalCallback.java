@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import commands.list_of_commands;
+
 import util.ChatWindow;
 import util.Util;
 import gui.Gui;
@@ -126,24 +128,17 @@ public class LocalCallback implements OTRCallbacks{
 					" Please respond with /rs.");
 			
 			str = JOptionPane.showInputDialog("The other side has initialized SMP. Enter the secret");
-			try {
-				bud.sendRaw("message /otr /rs "+str);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+				list_of_commands.in_command(bud, "/otr /rs"+str, w);	
 			
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_ANSWER){
 			Logger.log(Logger.INFO, this.getClass(),"The other side has initialized SMP, with question:" +
 					question + ", "+
 			" Please respond with /rs.");
-			str = JOptionPane.showInputDialog("The other side has initialized SMP. Enter the secret");
-			try {
-				bud.sendRaw("message /otr /rs "+str);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			str = JOptionPane.showInputDialog("The other side has initialized SMP: "+question+"? Enter the secret");
+			
+				list_of_commands.in_command(bud, "/otr /rs"+str, w);
+			
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
 			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded.");
 			w.setStatusText("Encrypted (SMP succeeded)",3);
@@ -151,8 +146,7 @@ public class LocalCallback implements OTRCallbacks{
 			Logger.log(Logger.INFO, this.getClass(),"SMP failed.");
 			w.setStatusText("SMP failed.",2);
 		}
-		
-		
+				
 	}
 	
 }
