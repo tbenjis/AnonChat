@@ -465,8 +465,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 			{
 				//after the process is complete disable start encrypted chat menu
 				//set otr off
-				setOTRoff();
-				list_of_commands.in_command(b, "/otr /disc", this);
+				setOTRoff();				
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot stop encryption. Please try again.");
@@ -541,8 +540,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.mntmStopEncryptedChat.setEnabled(false);
 		this.mntmStartEncryptedChat.setEnabled(true);
 		this.mntmAuthenticateContactmitm.setEnabled(false);
+		//send isconnect command
+		list_of_commands.in_command(b, "/otr /disc", this);
 		
 		this.OTR_ENABLED = false;
+		
 		lblNotEncrypted.setText("Not Encrypted");
 		lblNotEncrypted.setForeground(Color.RED);
 		this.fingerprint_ = null;
@@ -550,6 +552,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.alice = null;
 		this.callback = null;
 		this.conn = null;
+		
 	}
 	/**
 	 * check if otr is enabled

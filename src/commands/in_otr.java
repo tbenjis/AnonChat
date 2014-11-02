@@ -42,8 +42,7 @@ public class in_otr {
 			} else if (str.startsWith("/rs")) {
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Accepting Secret answer from buddy");
-				str = JOptionPane.showInputDialog("Please input the secret");
-				conn.respondSmp(str, callback);
+				conn.respondSmp(str.substring(3), callback);
 			} else if (str.startsWith("/as")) {
 				Logger.log(Logger.INFO, "IN_OTR", "Aborting SMP");
 				conn.abortSmp(callback);
