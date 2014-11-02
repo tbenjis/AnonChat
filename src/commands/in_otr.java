@@ -26,9 +26,11 @@ public class in_otr {
 		String str = s.substring(5);
 		// string to display in chat
 		String chatString = s;
+		boolean smp_request = false;
 		try {
 
 			if (str.startsWith("/isq")) {
+				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR", "Requesting Secret question");
 				String question = JOptionPane
 						.showInputDialog("Please input secret question");
@@ -36,21 +38,25 @@ public class in_otr {
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.initiateSmp_q(question, str, callback);
 			} else if (str.startsWith("/is")) {
+				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR", "initiating SMP");
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.initiateSmp(str, callback);
 				ChatWindow.update_window(0, w, "Sending SMP request to user, Please wait...", "", "",
 						!buddy.isFullyConnected());
 			} else if (str.startsWith("/rs")) {
+				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Accepting Secret answer from buddy");
 				conn.respondSmp(str.substring(3), callback);
 				ChatWindow.update_window(0, w, "Sending reply to user, Please wait...", "", "",
 						!buddy.isFullyConnected());
 			} else if (str.startsWith("/as")) {
+				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR", "Aborting SMP");
 				conn.abortSmp(callback);
 			} else if (str.startsWith("/disc")) {
+				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption: "
 						+ str);
 				conn.disconnect(callback);
@@ -77,12 +83,7 @@ public class in_otr {
 			e.printStackTrace();
 		}
 
-		if (!chatString.substring(5).startsWith("/isq")
-				|| !chatString.substring(5).startsWith("/is")
-				|| !chatString.substring(5).startsWith("/isq")
-				|| !chatString.substring(5).startsWith("/rs")
-				|| !chatString.substring(5).startsWith("/as")
-				|| !chatString.substring(5).startsWith("/disc"))
+		if (!smp_request)
 			ChatWindow.update_window(5, w, chatString.substring(5), "", "",
 					!buddy.isFullyConnected());
 	}
