@@ -3,9 +3,7 @@ package core.otr;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
-
 import commands.list_of_commands;
-
 import util.ChatWindow;
 import util.Util;
 import gui.Gui;
@@ -48,11 +46,6 @@ public class LocalCallback implements OTRCallbacks{
 		return Policy.DEFAULT;
 	}
 
-	public void goneSecure(OTRContext context) {
-		Logger.log(Logger.INFO, this.getClass(),"AKE succeeded");
-		w.setStatusText("AKE succeeded",1);
-	}
-
 	public int isLoggedIn(String accountname, String protocol,
 			String recipient) {
 		if(bud.isFullyConnected())
@@ -75,7 +68,7 @@ public class LocalCallback implements OTRCallbacks{
 		
 		w.setStatusText("New fingerprint is created: ",1);
 		// show encrypted
-		w.setFingerprint(Util.bytesToHex(fingerprint));
+		w.setBuddyFingerprint(Util.bytesToHex(fingerprint));
 		w.setFullEncryption();
 	}
 
@@ -148,6 +141,16 @@ public class LocalCallback implements OTRCallbacks{
 			w.setStatusText("SMP failed.",2);
 		}
 				
+	}
+
+	@Override
+	public void goneSecure(OTRContext context, byte[] fingerPrint) {
+		Logger.log(Logger.INFO, this.getClass(),"AKE succeeded");
+		w.setStatusText("AKE succeeded",1);
+		//get fingerprint and set it
+		w.setFingerprint(Util.bytesToHex(fingerPrint));
+		//list_of_commands.in_command(bud, "/otr Receiving fingerprint", w);
+		
 	}
 	
 }

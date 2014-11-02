@@ -43,14 +43,18 @@ public class out_otr {
 					w.setOTRon();
 				}
 			}
-			
+			//only display messages for otr
+			if(rec.startsWith("/otr"))
+			{
+				ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);			
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//check if we received a fingerprint message
+	/*	//check if we received a fingerprint message
 		if(rec.contains("~"))
 		{	
 			newrec =rec.split("~");			
@@ -60,7 +64,7 @@ public class out_otr {
 			{
 				ChatWindow.update_window(6, w, newrec[1].substring(5), "", "", with_delay);			
 			}
-		}
+		}*/
 		
 	}
 }

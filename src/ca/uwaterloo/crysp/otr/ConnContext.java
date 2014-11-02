@@ -309,7 +309,9 @@ public class ConnContext implements OTRContext {
         				found_print.fingerPrint)){
         	callback.stillSecure(this, this.auth.initiated);
         }else{
-        	callback.goneSecure(this);
+        	//get our fingerprint
+        	byte[] our_fp = PrivKey.fingerprintRaw(us, this.accountName, this.protocol, prov);
+        	callback.goneSecure(this, our_fp);
         }
         this.gone_encrypted = 1;
     }

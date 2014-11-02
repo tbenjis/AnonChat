@@ -27,8 +27,8 @@ package ca.uwaterloo.crysp.otr.demo;
 
 import java.net.*;
 import java.io.*;
-import ca.uwaterloo.crysp.otr.*;
 
+import ca.uwaterloo.crysp.otr.*;
 import ca.uwaterloo.crysp.otr.iface.*;
 
 public class Driver {
@@ -279,6 +279,12 @@ class LocalCallback implements OTRCallbacks{
 		}
 		
 		
+	}
+
+	@Override
+	public void goneSecure(OTRContext context, byte[] fingerPrint) {
+		// TODO Auto-generated method stub
+		System.out.println("\033[31mAKE succeeded\033[0m");
 	}
 	
 }

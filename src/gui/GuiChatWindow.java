@@ -546,6 +546,10 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		lblNotEncrypted.setText("Not Encrypted");
 		lblNotEncrypted.setForeground(Color.RED);
 		this.fingerprint_ = null;
+		this.buddyfingerprint_ = null;
+		this.alice = null;
+		this.callback = null;
+		this.conn = null;
 	}
 	/**
 	 * check if otr is enabled
@@ -598,8 +602,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	 */
 	public void setFingerprint(String f)
 	{
-		this.fingerprint_ = f;
-		list_of_commands.in_command(b, f+"~/otr Setting up fingerprint", this);
+		this.fingerprint_ = f;		
 	}
 	public String getFingerprint()
 	{

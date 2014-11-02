@@ -104,8 +104,9 @@ public interface OTRCallbacks {
     /** The list of known fingerprints has changed.  Write them to disk. */
     void writeFingerprints();
 
-    /** A ConnContext has entered a secure state. */
-    void goneSecure(OTRContext context);
+    /** A ConnContext has entered a secure state. 
+     * @param fingerPrint */
+    void goneSecure(OTRContext context, byte[] fingerPrint);
 
 
     /** We have completed an authentication, using the D-H keys we

@@ -15,7 +15,7 @@ import core.Config;
 import core.Logger;
 
 /**
- * Display a messing that we send
+ * Display a messages that we send
  * 
  * @author tbenjis
  * 
@@ -26,10 +26,12 @@ public class in_otr {
 
 		// get the next 5 string
 		String str = s.substring(5);
+		//string to display in chat
 		String chatString = s;
-		if(w.getFingerprint()!=null){
+		//detect if fingerprint exist and join with data
+		/*if(w.getFingerprint()!=null){
 			s = w.getFingerprint()+"~"+s;
-		}
+		}*/
 
 		//Logger.log(Logger.INFO, "IN_OTR", "String is: " + str + " " + Config.us
 		//		+ " " + buddy.getClient() + " " + buddy.getAddress());
@@ -49,12 +51,12 @@ public class in_otr {
 			} else if (str.startsWith("/rs")) {
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Accepting Secret answer from buddy");
-				conn.respondSmp(str.substring(4), callback);
+				conn.respondSmp(str, callback);
 			} else if (str.startsWith("/as")) {
 				Logger.log(Logger.INFO, "IN_OTR", "Aborting SMP");
 				conn.abortSmp(callback);
 			} else if (str.startsWith("/disc")) {
-				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption");
+				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption: "+ str);
 				conn.disconnect(callback);
 				conn.abortSmp(callback);
 			} else {
