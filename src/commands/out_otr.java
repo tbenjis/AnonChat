@@ -43,7 +43,6 @@ public class out_otr {
 			//only display messages for otr
 			if(rec.startsWith("/otr"))
 			{
-				if(!rec.startsWith("/otr /"))
 				ChatWindow.update_window(6, w, rec.substring(5), "", "", with_delay);			
 			}
 			

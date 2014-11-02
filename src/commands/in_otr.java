@@ -24,7 +24,7 @@ public class in_otr {
 
 		// get the next 5 string
 		String str = s.substring(5);
-		//string to display in chat
+		// string to display in chat
 		String chatString = s;
 		try {
 
@@ -39,15 +39,20 @@ public class in_otr {
 				Logger.log(Logger.INFO, "IN_OTR", "initiating SMP");
 				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.initiateSmp(str, callback);
+				ChatWindow.update_window(0, w, "Sending SMP request to user, Please wait...", "", "",
+						!buddy.isFullyConnected());
 			} else if (str.startsWith("/rs")) {
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Accepting Secret answer from buddy");
 				conn.respondSmp(str.substring(3), callback);
+				ChatWindow.update_window(0, w, "Sending reply to user, Please wait...", "", "",
+						!buddy.isFullyConnected());
 			} else if (str.startsWith("/as")) {
 				Logger.log(Logger.INFO, "IN_OTR", "Aborting SMP");
 				conn.abortSmp(callback);
 			} else if (str.startsWith("/disc")) {
-				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption: "+ str);
+				Logger.log(Logger.INFO, "IN_OTR", "Disconnecting encryption: "
+						+ str);
 				conn.disconnect(callback);
 				conn.abortSmp(callback);
 			} else {
@@ -57,22 +62,28 @@ public class in_otr {
 					str = us.messageSending(Config.us, buddy.getClient(),
 							buddy.getAddress(), s, null,
 							Policy.FRAGMENT_SEND_ALL, callback);
-					
-						Logger.log(Logger.INFO, "IN_OTR",
-								"To network:" + str.length() + ":" + str + "");
+
+					Logger.log(Logger.INFO, "IN_OTR",
+							"To network:" + str.length() + ":" + str + "");
 				} catch (Exception e) {
 					Logger.log(Logger.SEVERE, "IN_OTR",
 							"Null received, maybe OTR control message");
-					//w.setPartialEncryption();
+					// w.setPartialEncryption();
 				}
-				
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		ChatWindow.update_window(5, w, chatString.substring(5), "", "",
-				!buddy.isFullyConnected());
+		if (!chatString.substring(5).startsWith("/isq")
+				|| !chatString.substring(5).startsWith("/is")
+				|| !chatString.substring(5).startsWith("/isq")
+				|| !chatString.substring(5).startsWith("/rs")
+				|| !chatString.substring(5).startsWith("/as")
+				|| !chatString.substring(5).startsWith("/disc"))
+			ChatWindow.update_window(5, w, chatString.substring(5), "", "",
+					!buddy.isFullyConnected());
 	}
 }
