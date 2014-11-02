@@ -90,10 +90,10 @@ public class LocalCallback implements OTRCallbacks{
 	public String errorMessage(OTRContext context, int err_code) {
 		if(err_code==OTRCallbacks.OTRL_ERRCODE_MSG_NOT_IN_PRIVATE){
 			String str= "You sent an encrypted message, but we finished " +
-					"the private conversation.";
-			w.setOTRoff();
+					"the private conversation.";		
 			return str;
 		}
+		w.setOTRoff();
 		return null;
 	}
 
@@ -133,11 +133,11 @@ public class LocalCallback implements OTRCallbacks{
 				list_of_commands.in_command(bud, "/otr /rs"+str, w);
 			
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
-			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded.");
+			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded (User trusted).");
 			w.setStatusText("Encrypted (SMP succeeded)",3);
 			w.setMITMoff();
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_FAILURE){
-			Logger.log(Logger.INFO, this.getClass(),"SMP failed.");
+			Logger.log(Logger.INFO, this.getClass(),"SMP failed (User not trusted).");
 			w.setStatusText("SMP failed.",2);
 		}
 				

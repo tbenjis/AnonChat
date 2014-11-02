@@ -1,4 +1,4 @@
-# Tor state file last generated on 2014-11-02 18:55:53 local time
+# Tor state file last generated on 2014-11-02 19:12:44 local time
 # Other times below are in UTC
 # You *do not* need to edit this file.
 
@@ -32,7 +32,7 @@ EntryGuardDownSince 2014-10-14 07:55:07 2014-10-14 09:53:14
 EntryGuardUnlistedSince 2014-10-21 12:18:50
 EntryGuardAddedBy 4E20E74CCBD0169CD369E2EB56BD97523A79E6D1 0.2.4.23 2014-09-18 02:08:38
 TorVersion Tor 0.2.4.23 (git-598c61362f1b3d3e)
-LastWritten 2014-11-02 16:55:53
+LastWritten 2014-11-02 17:12:44
 TotalBuildTimes 67
 CircuitBuildTimeBin 475 1
 CircuitBuildTimeBin 525 4

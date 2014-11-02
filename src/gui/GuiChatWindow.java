@@ -540,7 +540,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.mntmStopEncryptedChat.setEnabled(false);
 		this.mntmStartEncryptedChat.setEnabled(true);
 		this.mntmAuthenticateContactmitm.setEnabled(false);
-		//send isconnect command
+		//send is connect command
 		list_of_commands.in_command(b, "/otr /disc", this);
 		
 		this.OTR_ENABLED = false;
