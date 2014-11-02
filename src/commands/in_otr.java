@@ -3,11 +3,9 @@ package commands;
 import javax.swing.JOptionPane;
 
 import util.ChatWindow;
-import ca.uwaterloo.crysp.otr.TLV;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
 import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
-import ca.uwaterloo.crysp.otr.iface.OTRTLV;
 import ca.uwaterloo.crysp.otr.iface.Policy;
 import gui.GuiChatWindow;
 import core.Buddy;
@@ -28,13 +26,6 @@ public class in_otr {
 		String str = s.substring(5);
 		//string to display in chat
 		String chatString = s;
-		//detect if fingerprint exist and join with data
-		/*if(w.getFingerprint()!=null){
-			s = w.getFingerprint()+"~"+s;
-		}*/
-
-		//Logger.log(Logger.INFO, "IN_OTR", "String is: " + str + " " + Config.us
-		//		+ " " + buddy.getClient() + " " + buddy.getAddress());
 		try {
 
 			if (str.startsWith("/isq")) {
@@ -51,6 +42,7 @@ public class in_otr {
 			} else if (str.startsWith("/rs")) {
 				Logger.log(Logger.INFO, "IN_OTR",
 						"Accepting Secret answer from buddy");
+				str = JOptionPane.showInputDialog("Please input the secret");
 				conn.respondSmp(str, callback);
 			} else if (str.startsWith("/as")) {
 				Logger.log(Logger.INFO, "IN_OTR", "Aborting SMP");
