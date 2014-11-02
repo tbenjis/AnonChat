@@ -1,4 +1,4 @@
-AnonChat is a p2p messaging application based on jTorChat. Application has been modified for extra security and the addition of OTR messaging protocol and SMP (Socialist Millionaire Protocol) Updated to latest Tor binary and other security improvement.
+AnonChat is a p2p messaging application based on jTorChat. Application has been modified to use OTR messaging protocol and SMP (Socialist Millionaire Protocol). Updated to latest Tor binary and other security improvement.
 
 	
 Design Goals
@@ -129,7 +129,6 @@ Sample Transcript
 [6:05:43 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAACAAAAEvY5Ueh3XfZtJ0RqvfJSOyoeWmHs4y7H/uu2nCu6rj/3dsB8yAVCAAAAAA==.
 [6:05:43 - OUT_OTR] From OTR:17: /otr how are you?
 [6:05:43 - core.Buddy] Send afcgsnfdkz2irjrn status available
-[6:06:01 - core.Buddy] Failed to connect to eoccsjpzqv7gwps3 : SOCKS: Host unreachable | Retry in 300000
 [6:06:05 - API] afcgsnfdkz2irjrn sent ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAADAAAAEobO6rT7EMBa4q1EBkBJglt7oI2TFwuyoSj0zY1gY7EZWBETijBMAAAAAA==.
 [6:06:05 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAADAAAAEobO6rT7EMBa4q1EBkBJglt7oI2TFwuyoSj0zY1gY7EZWBETijBMAAAAAA==.
 [6:06:05 - OUT_OTR] From OTR:17: /otr how are you?
