@@ -4,11 +4,14 @@
 # generated files
 bin/
 gen/
-data/offlinemsgs/
-data/Tor/tor_data/
+data/offlinemsgs/*
+data/Tor/tor_data/*
+data/Tor/hidden_service/*
+data/log/*
 
 # Intellij project files
 *.iml
 *.ipr
 *.iws
 .idea/
+!.gitkeep
