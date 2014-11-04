@@ -67,8 +67,8 @@ public class LocalCallback implements OTRCallbacks{
 		Logger.log(Logger.INFO, this.getClass(),"New fingerprint is created."+Util.bytesToHex(fingerprint));
 		
 		w.setStatusText("New fingerprint is created: ",1);
-		// show encrypted
-		w.setBuddyFingerprint(Util.bytesToHex(fingerprint));
+		// show encrypted and set the buddys fingerprint
+		w.setBuddyFingerprint(Util.fineFingerprint(Util.bytesToHex(fingerprint)));
 		w.setFullEncryption();
 	}
 
@@ -148,7 +148,7 @@ public class LocalCallback implements OTRCallbacks{
 		Logger.log(Logger.INFO, this.getClass(),"AKE succeeded");
 		w.setStatusText("AKE succeeded",1);
 		//get fingerprint and set it
-		w.setFingerprint(Util.bytesToHex(fingerPrint));
+		w.setFingerprint(Util.fineFingerprint(Util.bytesToHex(fingerPrint)));
 		//list_of_commands.in_command(bud, "/otr Receiving fingerprint", w);
 		
 	}

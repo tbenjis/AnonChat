@@ -33,7 +33,7 @@ public class out_otr {
 			stlv = us.messageReceiving(Config.us, buddy.getClient(), buddy.getAddress(), rec, callback);
 			if(stlv!=null){
 				rec=stlv.msg;
-				Logger.log(Logger.INFO, "OUT_OTR","From OTR:"+rec.length()+": "+rec);
+				Logger.log(Logger.INFO, "OUT_OTR","From OTR (converted):"+rec.length()+": "+rec);
 				//message is encrypted you can enable the menus
 				if(!w.isOTREnabled())
 				{

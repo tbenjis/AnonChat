@@ -113,5 +113,20 @@ public class Util {
 	     }
 	     return new String(hexChars);
 	 }
+	 
+	 //add spaces after 8 chars to make fingerprint cool
+	 public static String fineFingerprint(String data)
+	 {
+		 StringBuilder str = new StringBuilder(data);
+		 int idx = str.length() - 8;
+
+		 while (idx > 0)
+		 {
+		     str.insert(idx, "-");
+		     idx = idx - 8;
+		 }
+		 
+		 return str.toString();
+	 }
 
 }
