@@ -51,11 +51,11 @@ public static int newpb = 0;
 		if (Config.os.indexOf("win") >= 0) {
 			command1="taskkill /F /IM tor.exe";
 			command2="taskkill /F /IM torobf.exe";
-			command3="taskkill /F /IM obfsproxy.exe";
+			command3="taskkill /F /IM obfsproxy_exec.exe";
 		} else if (Config.os.indexOf("nix") >= 0 || Config.os.indexOf("nux") >= 0) {
 			command1="killall tor.lin";
 			command2="killall torobf.lin";
-			command3="killall obfsproxy";
+			command3="killall obfsproxy_exec";
 		}
 		
 		Runtime run = Runtime.getRuntime();

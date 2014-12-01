@@ -73,4 +73,4 @@ Bridge obfs3 169.229.59.75:46328 AF9F66B7B04F8FF6F32D455F05135250A16543C9
 Bridge obfs3 208.79.90.242:35658 BA61757846841D64A83EA2514C766CB92F1FB41F
 Bridge obfs3 209.141.36.236:45496 58D91C3A631F910F32E18A55441D5A0463BA66E2
 
-ClientTransportPlugin obfs2,obfs3 exec obfsproxy\obfsproxy_exec --managed 
+ClientTransportPlugin obfs2,obfs3 exec obfsproxy/obfsproxy_exec --managed 
