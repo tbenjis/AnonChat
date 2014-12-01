@@ -198,7 +198,7 @@ public class TorLoader {
 		
 // fix: On Windows obfsproxy do not close when his linked tor close --> make better in future
 		if (Config.os.contains("win") && Config.obfsproxy==1) {
-			String command1="taskkill /F /IM obfsproxy.exe";
+			String command1="taskkill /F /IM obfsproxy_exec.exe";
 			Runtime run = Runtime.getRuntime();
 			try {
 				Process pr1 = run.exec(command1);
