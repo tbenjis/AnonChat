@@ -53,3 +53,6 @@ NumEntryGuards 6
 #Log info File tor.log
 #Log info stdout
 #SafeLogging 0
+
+GeoIPFile tor_data\geoip
+GeoIPv6File tor_data\geoip6
