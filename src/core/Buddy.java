@@ -267,6 +267,7 @@ public class Buddy {
 	public Scanner ourScanner;
 	private int npe1Count;
 
+	//sends data to socket
 	public void sendRaw(String command) throws IOException {
 		if (!getBlack(this.address)) {
 			synchronized (OSO_LOCK) {

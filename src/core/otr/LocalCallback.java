@@ -29,7 +29,7 @@ public class LocalCallback implements OTRCallbacks{
 	public void injectMessage(String accName, String prot, String rec, String msg){
 		if(msg==null)return;
 		//return a log of injected message
-		Logger.log(Logger.INFO, this.getClass(), "Injecting message to the recipient:"
+		Logger.log(Logger.INFO, this.getClass().getName(), "Injecting message to the recipient:"
 				+msg.length()+": "+msg.toString());
 		
 		
@@ -64,7 +64,7 @@ public class LocalCallback implements OTRCallbacks{
 			String accountname, String protocol, String username,
 			byte[] fingerprint) {
 		
-		Logger.log(Logger.INFO, this.getClass(),"New fingerprint is created."+Util.bytesToHex(fingerprint));
+		Logger.log(Logger.INFO, this.getClass().getName(),"New fingerprint is created."+Util.bytesToHex(fingerprint));
 		
 		w.setStatusText("New fingerprint is created: ",1);
 		// show encrypted and set the buddys fingerprint
@@ -73,17 +73,17 @@ public class LocalCallback implements OTRCallbacks{
 	}
 
 	public void stillSecure(OTRContext context, int is_reply) {
-		Logger.log(Logger.INFO, this.getClass(),"Still secure.");
+		Logger.log(Logger.INFO, this.getClass().getName(),"Still secure.");
 		w.setStatusText("Still secure",1);
 	}
 
 	public void updateContextList() {
-		Logger.log(Logger.INFO, this.getClass(),"Updating context list.");
+		Logger.log(Logger.INFO, this.getClass().getName(),"Updating context list.");
 		w.setStatusText("Updating context list.",1);
 	}
 
 	public void writeFingerprints() {
-		Logger.log(Logger.INFO, this.getClass(),"Writing fingerprints.");
+		Logger.log(Logger.INFO, this.getClass().getName(),"Writing fingerprints.");
 		w.setStatusText("Writing fingerprints.",1);
 	}
 
@@ -101,13 +101,13 @@ public class LocalCallback implements OTRCallbacks{
 			OTRContext context, String message) {
 		String str = "The private connection has already ended.";
 		if(msg_event==OTRCallbacks.OTRL_MSGEVENT_CONNECTION_ENDED){
-			Logger.log(Logger.INFO, this.getClass(),str);
+			Logger.log(Logger.INFO, this.getClass().getName(),str);
 			w.setOTRoff();
 			ChatWindow.update_window(0, w, str, "", "", false);
 		}else if(msg_event==OTRCallbacks.OTRL_MSGEVENT_RCVDMSG_NOT_IN_PRIVATE){
 			str = "We received an encrypted message, but we are not in " +
 					"encryption state.";
-			Logger.log(Logger.INFO, this.getClass(),str);
+			Logger.log(Logger.INFO, this.getClass().getName(),str);
 			w.setOTRoff();
 			ChatWindow.update_window(0, w, str, "", "", false);
 		}
@@ -117,7 +117,7 @@ public class LocalCallback implements OTRCallbacks{
 			OTRContext context, int progress_percent, String question) {
 		String str;
 		if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_SECRET){
-			Logger.log(Logger.INFO, this.getClass(),"The other side has initialized SMP." +
+			Logger.log(Logger.INFO, this.getClass().getName(),"The other side has initialized SMP." +
 					" Please respond with /rs.");
 			
 			str = JOptionPane.showInputDialog("The other side has initialized SMP. Enter the secret");
@@ -125,7 +125,7 @@ public class LocalCallback implements OTRCallbacks{
 				list_of_commands.in_command(bud, "/otr /rs"+str, w);	
 			
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_ASK_FOR_ANSWER){
-			Logger.log(Logger.INFO, this.getClass(),"The other side has initialized SMP, with question:" +
+			Logger.log(Logger.INFO, this.getClass().getName(),"The other side has initialized SMP, with question:" +
 					question + ", "+
 			" Please respond with /rs.");
 			str = JOptionPane.showInputDialog("The other side has initialized SMP: "+question+"? Enter the secret");
@@ -133,11 +133,11 @@ public class LocalCallback implements OTRCallbacks{
 				list_of_commands.in_command(bud, "/otr /rs"+str, w);
 			
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_SUCCESS){
-			Logger.log(Logger.INFO, this.getClass(),"SMP succeeded (User trusted).");
+			Logger.log(Logger.INFO, this.getClass().getName(),"SMP succeeded (User trusted).");
 			w.setStatusText("Encrypted (SMP succeeded)",3);
 			w.setMITMoff();
 		}else if(smpEvent == OTRCallbacks.OTRL_SMPEVENT_FAILURE){
-			Logger.log(Logger.INFO, this.getClass(),"SMP failed (User not trusted).");
+			Logger.log(Logger.INFO, this.getClass().getName(),"SMP failed (User not trusted).");
 			w.setStatusText("SMP failed.",2);
 		}
 				
@@ -145,7 +145,7 @@ public class LocalCallback implements OTRCallbacks{
 
 	@Override
 	public void goneSecure(OTRContext context, byte[] fingerPrint) {
-		Logger.log(Logger.INFO, this.getClass(),"AKE succeeded");
+		Logger.log(Logger.INFO, this.getClass().getName(),"AKE succeeded");
 		w.setStatusText("AKE succeeded",1);
 		//get fingerprint and set it
 		w.setFingerprint(Util.fineFingerprint(Util.bytesToHex(fingerPrint)));

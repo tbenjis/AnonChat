@@ -28,7 +28,8 @@ public class in_otr {
 		String chatString = s;
 		boolean smp_request = false;
 		try {
-
+			
+			//detect SMP request
 			if (str.startsWith("/isq")) {
 				smp_request = true;
 				Logger.log(Logger.INFO, "IN_OTR", "Requesting Secret question");
