@@ -418,7 +418,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	}
 
 	public static String getTime() {
-		return new SimpleDateFormat("h:mm:ss").format(new Date());
+		return new SimpleDateFormat("h:mm:ss:SSS").format(new Date());
 		// return Calendar.getInstance().get(Calendar.HOUR) + ":" +
 		// Calendar.getInstance().get(Calendar.MINUTE) + ":" +
 		// Calendar.getInstance().get(Calendar.SECOND);
