@@ -68,9 +68,9 @@ public class Logger {
 				} 
 				if (!usingLog || override) {
 					if (logLevel <= WARNING)
-						oldOut.println("Log: !{" + s + "}! " + string);
+						oldOut.println(GuiChatWindow.getTime() +"- Log: !{" + s + "}! " + string);
 					else
-						oldOut.println("Log: {" + s + "} " + string);
+						oldOut.println(GuiChatWindow.getTime() +"- Log: {" + s + "} " + string);
 					if (i <= SEVERE) // dump stack if SEVERE or greater (actually lower, but you get the point)
 						Thread.dumpStack();
 				}
@@ -109,9 +109,9 @@ public class Logger {
 				} 
 				if (!usingLog || override) {
 					if (logLevel <= WARNING)
-						oldOut.println("Log: ![" + o.getClass().getCanonicalName() + "]! " + string);
+						oldOut.println(GuiChatWindow.getTime() +"- Log: ![" + o.getClass().getCanonicalName() + "]! " + string);
 					else
-						oldOut.println("Log: [" + o.getClass().getCanonicalName() + "] " + string);
+						oldOut.println(GuiChatWindow.getTime() +"- Log: [" + o.getClass().getCanonicalName() + "] " + string);
 					if (i <= SEVERE) // dump stack if SEVERE or greater (actually lower, but you get the point)
 						Thread.dumpStack();
 				}
