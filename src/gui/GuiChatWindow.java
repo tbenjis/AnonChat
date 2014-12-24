@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.swing.GroupLayout;
 import javax.swing.JEditorPane;
@@ -39,6 +40,7 @@ import ca.uwaterloo.crysp.otr.iface.OTRInterface;
 import commands.list_of_commands;
 import core.Buddy;
 import core.Config;
+import core.Logger;
 import core.otr.LocalCallback;
 import listeners.LinkController;
 import fileTransfer.FileDrop;
@@ -418,10 +420,11 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	}
 
 	public static String getTime() {
-		return new SimpleDateFormat("h:mm:ss:SSS").format(new Date());
-		// return Calendar.getInstance().get(Calendar.HOUR) + ":" +
-		// Calendar.getInstance().get(Calendar.MINUTE) + ":" +
-		// Calendar.getInstance().get(Calendar.SECOND);
+		//get default time zone
+		TimeZone zone = TimeZone.getDefault();
+		SimpleDateFormat isoFormat = new SimpleDateFormat("h:mm:ss:SSS");
+	    isoFormat.setTimeZone(TimeZone.getTimeZone(zone.getDisplayName()));
+	    return isoFormat.format(new Date());
 	}
 
 	public Buddy getBuddy() {
@@ -451,6 +454,8 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 				generateOTRkeys();
 				 //set otr encryption enabled
 				 setOTRon();
+				 //prevent multiple /otr request
+				 list_of_commands.in_command(b, "/otr initiating OTR Encryption", this);
 				
 			}else{
 				JOptionPane.showMessageDialog(this, "Client not fully connected, cannot initiate encryption. Please try again.");
@@ -528,7 +533,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.OTR_ENABLED = true;
 		lblNotEncrypted.setText("Encryption (Unconfirmed)");
 		lblNotEncrypted.setForeground(Color.MAGENTA);
-		list_of_commands.in_command(b, "/otr initiating OTR Encryption", this);
+		
 		
 	}
 	/**
@@ -583,11 +588,12 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	 */
 	public void generateOTRkeys()
 	{
+		Logger.log(Logger.INFO, "START GENERATE_KEY","");
 		// Generate the keys
 		 alice = new UserState(new ca.uwaterloo.crysp.otr.crypt.jca.JCAProvider());				 
 		 callback = new LocalCallback(b);
 		 conn = alice.getContext(Config.us, b.getClient(), b.getAddress());
-		
+		 Logger.log(Logger.INFO, "STOP GENERATE_KEY","");
 	}
 	
 	public void setStatusText(String txt, int good)
