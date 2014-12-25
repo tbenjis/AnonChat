@@ -37,6 +37,7 @@ import ca.uwaterloo.crysp.otr.UserState;
 import ca.uwaterloo.crysp.otr.iface.OTRCallbacks;
 import ca.uwaterloo.crysp.otr.iface.OTRContext;
 import ca.uwaterloo.crysp.otr.iface.OTRInterface;
+import commands.in_me;
 import commands.list_of_commands;
 import core.Buddy;
 import core.Config;
@@ -533,7 +534,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.OTR_ENABLED = true;
 		lblNotEncrypted.setText("Encryption (Unconfirmed)");
 		lblNotEncrypted.setForeground(Color.MAGENTA);
-		
+		in_me.AKE_PROGRESS = true;
 		
 	}
 	/**
@@ -557,6 +558,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.alice = null;
 		this.callback = null;
 		this.conn = null;
+		in_me.AKE_PROGRESS = false;
 		
 	}
 	/**
@@ -611,7 +613,9 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	 */
 	public void setFingerprint(String f)
 	{
+		//we know AKE has finished
 		this.fingerprint_ = f;		
+		in_me.AKE_PROGRESS = false;
 	}
 	public String getFingerprint()
 	{
