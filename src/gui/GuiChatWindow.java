@@ -534,7 +534,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.OTR_ENABLED = true;
 		lblNotEncrypted.setText("Encryption (Unconfirmed)");
 		lblNotEncrypted.setForeground(Color.MAGENTA);
-		in_me.AKE_PROGRESS = true;
+		Buddy.AKE_PROGRESS = true;
 		
 	}
 	/**
@@ -558,7 +558,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 		this.alice = null;
 		this.callback = null;
 		this.conn = null;
-		in_me.AKE_PROGRESS = false;
+		Buddy.AKE_PROGRESS = false;
 		
 	}
 	/**
@@ -615,7 +615,7 @@ public class GuiChatWindow extends JFrame implements ActionListener {
 	{
 		//we know AKE has finished
 		this.fingerprint_ = f;		
-		in_me.AKE_PROGRESS = false;
+		Buddy.AKE_PROGRESS = false;
 	}
 	public String getFingerprint()
 	{

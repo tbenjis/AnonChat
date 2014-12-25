@@ -266,6 +266,7 @@ public class Buddy {
 	public Object TSO_LOCK = new Object(); // TheirSock Outputstream lock
 	public Scanner ourScanner;
 	private int npe1Count;
+	public static boolean AKE_PROGRESS = false;
 
 	//sends data to socket
 	public void sendRaw(String command) throws IOException {
@@ -334,6 +335,7 @@ public class Buddy {
 	}
 
 	public void sendStatus() throws IOException {
+		if(!AKE_PROGRESS){
 
 		if (Config.updateStatus > 0 & Config.updateStatus < 4) {
 			setmyStatus(Config.updateStatus);
@@ -342,6 +344,7 @@ public class Buddy {
 
 		sendRaw("status " + TCPort.status);
 		lastStatus = System.currentTimeMillis();
+		}
 
 	}
 

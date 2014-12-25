@@ -13,11 +13,8 @@ import core.Buddy;
  * 
  */
 public class in_me {
-	public static boolean AKE_PROGRESS = false;
 	public static void command(Buddy buddy, String s, GuiChatWindow w) {
-		
-		//check if OTR AKE is still in progress
-		if(!AKE_PROGRESS){
+
 
 		if (s.length() < 5) {
 			ChatWindow.update_window(7, w, "Parameter /me msg", "", "", false);
@@ -26,5 +23,5 @@ public class in_me {
 					"/me " + s.substring(4), !buddy.isFullyConnected());
 		}
 	}
-	}
+	
 }
