@@ -81,12 +81,11 @@ Example:
 
 ping jgustszdg6qnk6dh J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D51I
 
-pong 31754944747097474078662100165902771331350515775810664422385852963171834014133
+pong J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D51I
 ^ response command
 
 Sample Transcript
 =================
-[6:04:56 - core.Buddy] Send afcgsnfdkz2irjrn ping jgustszdg6qnk6dh J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D51I
 [6:04:56 - core.Buddy] Send afcgsnfdkz2irjrn pong 19A7FVNREG4X6PA0XGOXMGUTFW92WRAZFV403A5KXCYKI8CWTABMLGRSQHZQWYAKUAIDVH3UX6B92
 [6:04:56 - core.Buddy] Sent afcgsnfdkz2irjrn a cached pong
 [6:04:57 - core.Buddy] afcgsnfdkz2irjrn sent pong
@@ -127,43 +126,3 @@ Sample Transcript
 [6:05:41 - OUT_OTR] From OTR:17: /otr how are you?
 [6:05:43 - API] afcgsnfdkz2irjrn sent ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAACAAAAEvY5Ueh3XfZtJ0RqvfJSOyoeWmHs4y7H/uu2nCu6rj/3dsB8yAVCAAAAAA==.
 [6:05:43 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAACAAAAEvY5Ueh3XfZtJ0RqvfJSOyoeWmHs4y7H/uu2nCu6rj/3dsB8yAVCAAAAAA==.
-[6:05:43 - OUT_OTR] From OTR:17: /otr how are you?
-[6:05:43 - core.Buddy] Send afcgsnfdkz2irjrn status available
-[6:06:05 - API] afcgsnfdkz2irjrn sent ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAADAAAAEobO6rT7EMBa4q1EBkBJglt7oI2TFwuyoSj0zY1gY7EZWBETijBMAAAAAA==.
-[6:06:05 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAADAAAAEobO6rT7EMBa4q1EBkBJglt7oI2TFwuyoSj0zY1gY7EZWBETijBMAAAAAA==.
-[6:06:05 - OUT_OTR] From OTR:17: /otr how are you?
-[6:06:09 - API] afcgsnfdkz2irjrn sent ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAAEAAAAEsHmr6qIstekx2y0BCfFazkN05lwZ8sg21CJ8U9M4YB+c5qdr38lAAAAAA==.
-[6:06:09 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAAEAAAAEsHmr6qIstekx2y0BCfFazkN05lwZ8sg21CJ8U9M4YB+c5qdr38lAAAAAA==.
-
-
-Potential Security Issues / Weaknesses on Tor Hidden service
-=============================================================
-
-Hidden Services Guessing
--------------------------
-Hidden services are stored on a DHT and can be iterated to find existing hidden services. As AnonChat uses a static port this can be used to find AnonChat users.
-
-Authentication Tokens
------------------------
-The AnonChat client that wants to authenticate an hidden service hashkey (which is a chat buddy / peer in AnonChat) has to generate an authentication token that the chat peer needs to return. If the client selects a weak token, say a pretty short one or one without real random data, then the token could be guessed and you could send spoofed AnonChat messages that look like they are coming from the authenticated peer.
-
-Stolen Private_key
--------------------
-If the private key of a client is stolen, the client can fully impersonate the original owner.
-
-Compromised Rendezvous point
------------------------------
-A compromised rendezvous point can be used to sniff out messages from AnonChat.
-
-
-Solution
-===============
-Implementation of off-the-record messaging (OTR) 
-
-Encryption: No one else can read your instant messages.
-
-Authentication: You are assured the correspondent is who you think it is. SMP prevent MITM attacks.
-
-Deniability: The messages you send do not have digital signatures that are checkable by a third party. Anyone can forge messages after a conversation to make them look like they came from you. However, during a conversation, your correspondent is assured the messages he sees are authentic and unmodified.
-
-Perfect forward secrecy: If you lose control of your private keys, no previous conversation is compromised.
