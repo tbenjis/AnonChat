@@ -3,15 +3,14 @@ AnonChat is a p2p messaging application based on jTorChat. Application has been 
 	
 Design Goals
 =============
-1.	Users aren't cannot be personally identified by their contacts or address
+1.	Users cannot be personally identified by their contacts or address.
 2.	Contact lists, message history or metadata cannot be accessed by an intruder or server.
-3.	All communication in encrypted and previous messages cannot be decrypted even if the encryption key is known.
-4.	Communication is completely decentralized and no server infrastructure is required.
+3.	All communication is encrypted and previous messages cannot be decrypted even if the encryption key is known.
+4.	The system is completely decentralized and no server infrastructure is required.
 5.	Enable users to resist censorship or monitoring in an unfavorable network environment.
 6.	Registration of users is free and no personal details are required.
 7.	User’s communicating can authenticate each other without exposing personal information.
 8.	Available on different platforms without the need for configuration by the user.
-
 
 
 Transport
