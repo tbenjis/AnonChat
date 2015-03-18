@@ -36,55 +36,70 @@ Connections from other AnonChat peers are always unauthenticated except they can
 
 Message Format
 ===============
+
+<pre>
 type: byte array
 message separator: 0x0a (LF)
 decode as string:
 replace '\r\n' with '\n' then '\n' with "\n" (LF)
+</pre>
 
 Message Encryption Format
 =========================
+
+<pre>
 command: /otr message
 seperator: 0x20 (SP)
 payload: string
 
 Example:
 /otr how are you?
+</pre>
 
 SMP Commands
 ============
+
+<pre>
 command: /otr /smpcmd  
 seperator: 0x20 (SP)
 payload: string
 Example (/smpcmd): (/isq, /rs, /disc ...)
+</pre>
 
 Command Format
 =================
+
+<pre>
 command: /command
 seperator: 0x20 (SP)
 payload: byte array
 
 Example:
 ping <payload>
-
+</pre>
 
 Message Commands
 ===================
-payload: <origin_hidden_service_id><separator><authentication_cookie>
-<origin_hidden_service_id> is the hash of the public key used in the onion network (also known as onion address). This is the address the peer needs to contact to return the authentication_cookie. This way the origin knows on which in-bound connection the peer sits on as the authentication_cookie was only sent to a single hidden service.
+`payload: <origin_hidden_service_id><separator><authentication_cookie>`
 
-<authentication_cookie> is a string of no specific length, but should be 7-bit-only to avoid charset conversion issues.
+`<origin_hidden_service_id>` is the hash of the public key used in the onion network (also known as onion address). This is the address the peer needs to contact to return the authentication_cookie. This way the origin knows on which in-bound connection the peer sits on as the authentication_cookie was only sent to a single hidden service.
+
+`<authentication_cookie>` is a string of no specific length, but should be 7-bit-only to avoid charset conversion issues.
 
 This authentication cookie has to be unique, cryptographically random and kept secret! If this token leaks, anyone can impersonate the identity of that AnonChat peer as long as the AnonChat application which generated this token runs.
 
 Example:
 
+<pre>
 ping jgustszdg6qnk6dh J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D51I
 
 pong J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D51I
 ^ response command
+</pre>
 
 Sample Transcript
 =================
+<pre>
 [6:04:56 - core.Buddy] Send afcgsnfdkz2irjrn pong 19A7FVNREG4X6PA0XGOXMGUTFW92WRAZFV403A5KXCYKI8CWTABMLGRSQHZQWYAKUAIDVH3UX6B92
 [6:04:56 - core.Buddy] Sent afcgsnfdkz2irjrn a cached pong
 [6:04:57 - core.Buddy] afcgsnfdkz2irjrn sent pong
@@ -128,3 +143,4 @@ Sample Transcript
 [6:05:41 - OUT_OTR] From OTR:17: /otr how are you?
 [6:05:43 - API] afcgsnfdkz2irjrn sent ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAACAAAAEvY5Ueh3XfZtJ0RqvfJSOyoeWmHs4y7H/uu2nCu6rj/3dsB8yAVCAAAAAA==.
 [6:05:43 - OUT_OTR] From network:358: ?OTR:AAIDAAAAAAEAAAACAAAAwJsbYqOD5ilzCz+bEF7b0CZrdoRiGbviXGKZEXs6jgyezwsVqV+gsGSF1SSocJRrfayIN4dyOyvgiwTjY2npNCKirpAhi0NJhkr6LqIPLHSHsxP5s923RVCzzcmSUgs5JJXWPteHD4G9LxNeYBguSeaxK0tF7UZpo28RAQD7PlWt6ZGbQC0kSUZkcNP0+JRIgjSoWaWMWhVLSgCyFdH9EIQo4Oo+QJqNkkGgvRVJmjlZ+exgQLi/GRRhxHUE0n1NKQAAAAAAAAACAAAAEvY5Ueh3XfZtJ0RqvfJSOyoeWmHs4y7H/uu2nCu6rj/3dsB8yAVCAAAAAA==.
+</pre>
