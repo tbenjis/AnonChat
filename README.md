@@ -1,8 +1,8 @@
 AnonChat is a p2p messaging application based on jTorChat. Application has been modified to use Off-The-Record messaging protocol and SMP (Socialist Millionaire Protocol). Updated to the latest Tor binary and other security improvement.
 
 	
-Design Goals
-=============
+##Design Goals
+
 1.	Users cannot be personally identified by their contacts or address.
 2.	Contact lists, message history or metadata cannot be accessed by an intruder or server.
 3.	All communication is encrypted and previous messages cannot be decrypted even if the encryption key is known.
@@ -13,29 +13,29 @@ Design Goals
 8.	Available on different platforms without the need for configuration by the user.
 
 
-Transport
-===========
+##Transport
+
 Uses TCP sockets to hidden services running on a specified port.
 Peers send and receive messages on that TCP socket.
 
 
-Connections
-================
+##Connections
+
 Hidden services behave like regular server sockets except that the server has no idea who (in the sense of IP source address) the client is because it is a tor client. As AnonChat is p2p, it needs to make out-bound connections to send messages and allow in-bound connections to receive messages from other peers.
 
 
-Out-Bound Connections
-======================
+##Out-Bound Connections
+
 Connections to AnonChat peers are out-bound and are authenticated by definition as only the owner of the hidden service key is able to respond to the connection attempt.
 
 
-In-Bound Connections
-=====================
+##In-Bound Connections
+
 Connections from other AnonChat peers are always unauthenticated except they can prove in some way that they are who they pretend to be. AnonChat uses an session token for each peer to authenticate their connection and only then we can believe the claimed origin of the messages we receive on that in-bound connection.
 
 
-Message Format
-===============
+##Message Format
+
 
 <pre>
 type: byte array
@@ -44,8 +44,7 @@ decode as string:
 replace '\r\n' with '\n' then '\n' with "\n" (LF)
 </pre>
 
-Message Encryption Format
-=========================
+##Message Encryption Format
 
 <pre>
 command: /otr message
@@ -56,8 +55,7 @@ Example:
 /otr how are you?
 </pre>
 
-SMP Commands
-============
+##SMP Commands
 
 <pre>
 command: /otr /smpcmd  
@@ -66,8 +64,7 @@ payload: string
 Example (/smpcmd): (/isq, /rs, /disc ...)
 </pre>
 
-Command Format
-=================
+##Command Format
 
 <pre>
 command: /command
@@ -78,8 +75,8 @@ Example:
 ping <payload>
 </pre>
 
-Message Commands
-===================
+##Message Commands
+
 `payload: <origin_hidden_service_id><separator><authentication_cookie>`
 
 `<origin_hidden_service_id>` is the hash of the public key used in the onion network (also known as onion address). This is the address the peer needs to contact to return the authentication_cookie. This way the origin knows on which in-bound connection the peer sits on as the authentication_cookie was only sent to a single hidden service.
@@ -97,8 +94,8 @@ pong J8BQHZ0E0EDN58POQMPK7W6EA5UEXSEIYB37MR4YL6K6I0WLI1NX4ZOS3PVMMMOMRKXI15ZZ6D5
 ^ response command
 </pre>
 
-Sample Transcript
-=================
+##Sample Transcript
+
 <pre>
 [6:04:56 - core.Buddy] Send afcgsnfdkz2irjrn pong 19A7FVNREG4X6PA0XGOXMGUTFW92WRAZFV403A5KXCYKI8CWTABMLGRSQHZQWYAKUAIDVH3UX6B92
 [6:04:56 - core.Buddy] Sent afcgsnfdkz2irjrn a cached pong
